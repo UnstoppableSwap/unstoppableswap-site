@@ -4,7 +4,7 @@ import useStore from "./store";
 export const setupSocket = () => {
   let socket;
 
-  socket = io("asb.unstoppableswap.net:3000", {
+  socket = io("https://asb.unstoppableswap.net", {
     path: "/api/socket.io",
   });
 

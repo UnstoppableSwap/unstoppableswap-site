@@ -12,7 +12,7 @@ import useStore from "../../store";
 import ProviderSelectDialog from "./ProviderSelectDialog";
 import ProviderSubmitDialog from "./ProviderSubmitDialog";
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles({
   inner: {
     textAlign: "left",
     width: "100%",
@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     alignItems: "center",
   },
-}));
+});
 
 export const ProviderSelect = () => {
   const classes = useStyles();

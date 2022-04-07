@@ -125,7 +125,6 @@ function APITable() {
                             <SyntaxHighlighter language="javascript" style={a11yDark}>{socketCodeExample}</SyntaxHighlighter>
                         </TableCell>
                     </TableRow>
-
                 </TableBody>
             </Table>
         </TableContainer>

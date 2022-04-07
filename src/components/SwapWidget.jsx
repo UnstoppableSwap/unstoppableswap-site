@@ -16,6 +16,7 @@ import ArrowDownwardIcon from "@material-ui/icons/ArrowDownward";
 import { satsToBtc } from "../convert-utils";
 import SwapHorizIcon from "@material-ui/icons/SwapHoriz";
 import ProviderSubmitDialog from "./provider-select-dialog/ProviderSubmitDialog";
+import DownloadDialog from "./DownloadDialog";
 
 const useStyles = makeStyles((theme) => ({
   outer: {
@@ -53,8 +54,7 @@ export const SwapWidget = () => {
   const classes = useStyles();
   const currentProvider = useStore((state) => state.currentProvider);
   const providerList = useStore((state) => state.providerList);
-  const setDialog = useStore((state) => state.setDialog);
-  const dialog = useStore((state) => state.dialog);
+  const [showDownloadDialog, setShowDownloadDialog] = useState(false);
 
   const [showSubmitProviderDialog, setShowSubmitProviderDialog] = useState(
     false
@@ -96,19 +96,6 @@ export const SwapWidget = () => {
       )} BTC`;
     }
     return false;
-  };
-
-  const handleGuideDialogOpen = () => {
-    const parsedBtcAmount = Number(btcFieldValue);
-
-    if (!getBtcFieldError()) {
-      setDialog({
-        ...dialog,
-        amount: parsedBtcAmount,
-        open: true,
-        page: 0,
-      });
-    }
   };
 
   useEffect(updateXmrValue, [btcFieldValue, currentProvider]);
@@ -154,11 +141,12 @@ export const SwapWidget = () => {
             variant="extended"
             color="primary"
             disabled={!!getBtcFieldError()}
-            onClick={handleGuideDialogOpen}
+            onClick={() => setShowDownloadDialog(true)}
           >
             <SwapHorizIcon className={classes.swapIcon} />
             Swap
           </Fab>
+          <DownloadDialog open={showDownloadDialog} onClose={() => setShowDownloadDialog(false)} />
         </Box>
       </Box>
     );

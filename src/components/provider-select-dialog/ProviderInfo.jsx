@@ -25,6 +25,8 @@ const useStyles = makeStyles((theme) => ({
 
 export const ProviderInfo = ({ provider }) => {
   const classes = useStyles();
+  const uptime = Math.round(provider.uptime * 100);
+  const age = Math.round(provider.age / 86400);
 
   return (
     <Box className={classes.content}>
@@ -43,10 +45,10 @@ export const ProviderInfo = ({ provider }) => {
       </Typography>
       <Box className={classes.chipsOuter}>
         <Chip label={provider.testnet ? "Testnet" : "Mainnet"} />
-        <Chip label={`${provider.uptime} % uptime`} />
+        <Chip label={`${uptime} % uptime`} />
         <Chip
-          label={`Went online ${provider.age} ${
-            provider.age === 1 ? "day" : "days"
+          label={`Went online ${age} ${
+            age === 1 ? "day" : "days"
           } ago`}
         />
       </Box>
