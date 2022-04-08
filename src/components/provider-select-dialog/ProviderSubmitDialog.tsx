@@ -30,7 +30,7 @@ export default function ProviderSubmitDialog({
 
   const handleProviderSubmit = async () => {
     if (multiAddr && peerId) {
-      await fetch("/api/submit-provider", {
+      await fetch("https://api.unstoppableswap.net/api/submit-provider", {
         method: "post",
         headers: {
           "Content-Type": "application/json",
