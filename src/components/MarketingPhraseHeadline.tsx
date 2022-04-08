@@ -11,7 +11,7 @@ const useStyles = makeStyles({
 export const MarketingPhraseHeadline = () => {
   const classes = useStyles();
   const el = useRef(null);
-  const typed = useRef(null);
+  const typed = useRef<Typed | null>(null);
 
   useEffect(() => {
     const options = {
@@ -29,10 +29,12 @@ export const MarketingPhraseHeadline = () => {
       backDelay: 2000,
     };
 
-    typed.current = new Typed(el.current, options);
+    if (el.current) {
+      typed.current = new Typed(el.current, options);
+    }
 
     return () => {
-      typed.current.destroy();
+      typed.current?.destroy();
     };
   }, []);
 

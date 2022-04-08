@@ -15,7 +15,7 @@ import {
 } from "@material-ui/core";
 import ProviderInfo from "./ProviderInfo";
 import AddIcon from "@material-ui/icons/Add";
-import useStore from "../../store";
+import useStore, { Provider } from "../../store";
 
 const useStyles = makeStyles({
   dialogContent: {
@@ -23,17 +23,25 @@ const useStyles = makeStyles({
   },
 });
 
-export const ProviderSelectDialog = ({ open, onClose, onSubmitDialogOpen }) => {
+export default function ProviderSelectDialog({
+  open,
+  onClose,
+  onSubmitDialogOpen,
+}: {
+  open: boolean;
+  onClose: () => void;
+  onSubmitDialogOpen: () => void;
+}) {
   const classes = useStyles();
   const providerList = useStore((state) => state.providerList);
   const setCurrentProvider = useStore((state) => state.setCurrentProvider);
   const theme = useTheme();
   const smallDevice = useMediaQuery(theme.breakpoints.down("sm"));
 
-  const handleProviderChange = (provider) => {
+  function handleProviderChange(provider: Provider) {
     setCurrentProvider(provider);
     onClose();
-  };
+  }
 
   return (
     <Dialog onClose={onClose} open={open} fullScreen={smallDevice}>
@@ -66,6 +74,4 @@ export const ProviderSelectDialog = ({ open, onClose, onSubmitDialogOpen }) => {
       </DialogActions>
     </Dialog>
   );
-};
-
-export default ProviderSelectDialog;
+}

@@ -1,4 +1,4 @@
-import {Box, makeStyles, CssBaseline} from "@material-ui/core";
+import { Box, makeStyles, CssBaseline } from "@material-ui/core";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import SwapWidget from "./SwapWidget";
 import MarketingPhraseHeadline from "./MarketingPhraseHeadline";
@@ -37,7 +37,7 @@ let theme = createMuiTheme({
   },
 });
 
-export const App = () => {
+export default function App() {
   const classes = useStyles();
 
   return (
@@ -54,6 +54,4 @@ export const App = () => {
       </Box>
     </ThemeProvider>
   );
-};
-
-export default App;
+}

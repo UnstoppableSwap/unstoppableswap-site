@@ -1,5 +1,6 @@
 import { makeStyles, Box, Typography, Chip } from "@material-ui/core";
 import { satsToBtc } from "../../convert-utils";
+import { Provider } from "../../store";
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -23,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const ProviderInfo = ({ provider }) => {
+export default function ProviderInfo({ provider }: { provider: Provider }) {
   const classes = useStyles();
   const uptime = Math.round(provider.uptime * 100);
   const age = Math.round(provider.age / 86400);
@@ -46,14 +47,8 @@ export const ProviderInfo = ({ provider }) => {
       <Box className={classes.chipsOuter}>
         <Chip label={provider.testnet ? "Testnet" : "Mainnet"} />
         <Chip label={`${uptime} % uptime`} />
-        <Chip
-          label={`Went online ${age} ${
-            age === 1 ? "day" : "days"
-          } ago`}
-        />
+        <Chip label={`Went online ${age} ${age === 1 ? "day" : "days"} ago`} />
       </Box>
     </Box>
   );
-};
-
-export default ProviderInfo;
+}

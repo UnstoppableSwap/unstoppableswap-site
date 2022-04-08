@@ -11,10 +11,16 @@ import {
   useTheme,
   useMediaQuery,
 } from "@material-ui/core";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { Multiaddr } from "multiaddr";
 
-export const ProviderSubmitDialog = ({ open, onClose }) => {
+export default function ProviderSubmitDialog({
+  open,
+  onClose,
+}: {
+  open: boolean;
+  onClose: () => void;
+}) {
   const [multiAddr, setMultiAddr] = useState("");
   const [peerId, setPeerId] = useState("");
   const [testnet, setTestnet] = useState(true);
@@ -41,17 +47,17 @@ export const ProviderSubmitDialog = ({ open, onClose }) => {
     }
   };
 
-  const handleMultiAddrChange = (event) => {
+  function handleMultiAddrChange(event: ChangeEvent<HTMLInputElement>) {
     setMultiAddr(event.target.value);
-  };
+  }
 
-  const handlePeerIdChange = (event) => {
+  function handlePeerIdChange(event: ChangeEvent<HTMLInputElement>) {
     setPeerId(event.target.value);
-  };
+  }
 
-  const handleTestnetCheckboxChange = (event) => {
+  function handleTestnetCheckboxChange(event: ChangeEvent<HTMLInputElement>) {
     setTestnet(event.target.checked);
-  };
+  }
 
   const getMultiAddressError = () => {
     try {
@@ -64,7 +70,7 @@ export const ProviderSubmitDialog = ({ open, onClose }) => {
           .protoNames()
           .find((protoName) => protoName.includes("onion"))
       ) {
-        return "Onion addresses are currently not allowed";
+        return "Onion addresses are not supported";
       }
       return null;
     } catch (e) {
@@ -127,6 +133,4 @@ export const ProviderSubmitDialog = ({ open, onClose }) => {
       </DialogActions>
     </Dialog>
   );
-};
-
-export default ProviderSubmitDialog;
+}

@@ -27,7 +27,7 @@ const useStyles = makeStyles({
   },
 });
 
-export const ProviderSelect = () => {
+export default function ProviderSelect() {
   const classes = useStyles();
   const currentProvider = useStore((state) => state.currentProvider);
 
@@ -73,6 +73,4 @@ export const ProviderSelect = () => {
       </ButtonBase>
     </Box>
   );
-};
-
-export default ProviderSelect;
+}

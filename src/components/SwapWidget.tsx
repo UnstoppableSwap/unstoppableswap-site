@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import {
   makeStyles,
   Box,
@@ -50,24 +50,35 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const Title = () => {
+  const classes = useStyles();
+
+  return (
+    <Box className={classes.header}>
+      <Typography variant="h5" className={classes.headerText}>
+        Swap BTC for XMR
+      </Typography>
+    </Box>
+  );
+};
+
 export const SwapWidget = () => {
   const classes = useStyles();
   const currentProvider = useStore((state) => state.currentProvider);
   const providerList = useStore((state) => state.providerList);
   const [showDownloadDialog, setShowDownloadDialog] = useState(false);
 
-  const [showSubmitProviderDialog, setShowSubmitProviderDialog] = useState(
-    false
-  );
-  const [btcFieldValue, setBtcFieldValue] = useState(0.02);
+  const [showSubmitProviderDialog, setShowSubmitProviderDialog] =
+    useState(false);
+  const [btcFieldValue, setBtcFieldValue] = useState<string | number>(0.02);
   const [xmrFieldValue, setXmrFieldValue] = useState(1);
 
   const showSubmitDialogOpenButton = () =>
     Array.isArray(providerList) && providerList.length === 0;
 
-  const onBtcAmountChange = (event) => {
+  function onBtcAmountChange(event: ChangeEvent<HTMLInputElement>) {
     setBtcFieldValue(event.target.value);
-  };
+  }
 
   const updateXmrValue = () => {
     const parsedBtcAmount = Number(btcFieldValue);
@@ -131,7 +142,7 @@ export const SwapWidget = () => {
             label="Receive"
             variant="outlined"
             size="medium"
-            value={parseFloat(xmrFieldValue).toFixed(4)}
+            value={xmrFieldValue.toFixed(4)}
             InputProps={{
               endAdornment: <InputAdornment position="end">XMR</InputAdornment>,
             }}
@@ -146,7 +157,10 @@ export const SwapWidget = () => {
             <SwapHorizIcon className={classes.swapIcon} />
             Swap
           </Fab>
-          <DownloadDialog open={showDownloadDialog} onClose={() => setShowDownloadDialog(false)} />
+          <DownloadDialog
+            open={showDownloadDialog}
+            onClose={() => setShowDownloadDialog(false)}
+          />
         </Box>
       </Box>
     );
@@ -169,18 +183,6 @@ export const SwapWidget = () => {
       </Box>
     );
   }
-};
-
-const Title = () => {
-  const classes = useStyles();
-
-  return (
-    <Box className={classes.header}>
-      <Typography variant="h5" className={classes.headerText}>
-        Swap BTC for XMR
-      </Typography>
-    </Box>
-  );
 };
 
 export default SwapWidget;

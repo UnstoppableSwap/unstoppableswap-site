@@ -12,28 +12,30 @@ export interface Provider {
 }
 
 const useStore = create((set) => ({
-  providerList: [],
+  providerList: [] as Provider[],
   setProviderList: (list: Provider[]) => {
     const sortedList = list.sort((a, b) => {
-      if(a.testnet && !b.testnet) return 1;
-      if(a.relevancy > b.relevancy) return -1;
+      if (a.testnet && !b.testnet) return 1;
+      if (a.relevancy > b.relevancy) return -1;
       return 1;
-    })
+    });
 
     // @ts-ignore
     set((state) => {
       return {
         providerList: sortedList,
         currentProvider: state.currentProvider
-          ? sortedList.find((p) => p.multiAddr === state.currentProvider.multiAddr) ||
-            sortedList[0]
+          ? sortedList.find(
+              (p) => p.multiAddr === state.currentProvider.multiAddr
+            ) || sortedList[0]
           : sortedList[0], // Tries to find the same provider by peer id and falls back to first of list when no longer present
       };
     });
   },
-  currentProvider: undefined,
+  currentProvider: undefined as Provider | undefined,
   // @ts-ignore
-  setCurrentProvider: (provider: Provider) => set({ currentProvider: provider }),
+  setCurrentProvider: (provider: Provider) =>
+    set({ currentProvider: provider }),
 }));
 
 export default useStore;

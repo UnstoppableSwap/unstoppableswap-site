@@ -1,6 +1,7 @@
 import { Box, makeStyles } from "@material-ui/core";
 import GitHubIcon from "@material-ui/icons/GitHub";
 import IconButton from "@material-ui/core/IconButton";
+import { GITHUB_URL } from "./DownloadDialog";
 
 const useStyles = makeStyles({
   root: {
@@ -18,11 +19,7 @@ export const Footer = () => {
 
   return (
     <Box className={classes.root}>
-      <IconButton
-        onClick={() =>
-          window.open("https://github.com/comit-network/xmr-btc-swap")
-        }
-      >
+      <IconButton onClick={() => window.open(GITHUB_URL)}>
         <GitHubIcon />
       </IconButton>
     </Box>
