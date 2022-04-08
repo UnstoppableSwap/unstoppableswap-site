@@ -31,6 +31,10 @@ export default function ProviderSelect() {
   const classes = useStyles();
   const currentProvider = useStore((state) => state.currentProvider);
 
+  if(!currentProvider) {
+    return null;
+  }
+
   const [selectDialogOpen, setSelectDialogOpen] = useState(false);
   const [submitDialogOpen, setSubmitDialogOpen] = useState(false);
 

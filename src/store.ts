@@ -33,8 +33,8 @@ const useStore = create((set) => ({
     });
   },
   currentProvider: undefined as Provider | undefined,
-  // @ts-ignore
   setCurrentProvider: (provider: Provider) =>
+      /* @ts-expect-error */
     set({ currentProvider: provider }),
 }));
 
