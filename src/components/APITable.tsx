@@ -17,16 +17,15 @@ SyntaxHighlighter.registerLanguage("javascript", js);
 
 const exampleApiResponse = `[
   {
-    "multiAddr": "/dnsaddr/unstoppableswap.net",
-    "peerId": "12D3KooWLHbHtkK53WoBA82Yht3PCCx6KXYxoJ6QqgXg1rSNtWhR",
+    "multiAddr": "/dns4/xmr-btc-asb.coblox.tech/tcp/9939",
+    "peerId": "12D3KooWCdMKjesXMJz1SiZ7HgotrxuqhQJbP5sgBm2BwP1cqThi",
     "testnet": true,
-    "price": 402800,
+    "price": 414201,
     "minSwapAmount": 10000,
-    "maxSwapAmount": 10000000,
-    "uptimeSeconds": 3467365,
-    "downtimeSeconds": 32246629,
-    "age": 122,
-    "relevancy": 1.2222222222222223
+    "maxSwapAmount": 100000,
+    "age": 11059330,
+    "uptime": 0.9962544391221945,
+    "relevancy": 0.6466112825788751
   },
 ]
 `;
@@ -35,7 +34,7 @@ const httpCodeExample = `fetch('https://api.unstoppableswap.net/api/list').then(
     console.log(\`\${providerList.length} swap providers are currently online!\`)
     
     providerList.forEach(provider => {
-        console.log(\`\${provider.multiAddr} has been online for \${provider.age} days!\`)
+        console.log(\`\${provider.multiAddr} has been online for \${provider.age} seconds!\`)
     })
 })`;
 
@@ -49,7 +48,7 @@ socket.on("provider-refresh", providerList => {
     console.log(\`\${providerList.length} swap providers are currently online!\`)
     
     providerList.forEach(provider => {
-        console.log(\`\${provider.multiAddr} has been online for \${provider.age} days!\`)
+        console.log(\`\${provider.multiAddr} has been online for \${provider.age} seconds!\`)
     })
 });
 `;
