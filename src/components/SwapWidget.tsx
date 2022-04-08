@@ -120,6 +120,7 @@ export const SwapWidget = () => {
   if (currentProvider !== undefined) {
     return (
       <Box className={classes.outer}>
+        {/* @ts-expect-error */}
         <Box className={classes.inner} component={Paper} elevation={15}>
           <Title />
           <TextField
@@ -167,6 +168,7 @@ export const SwapWidget = () => {
   } else {
     return (
       <Box className={classes.outer}>
+        {/* @ts-expect-error */}
         <Box className={classes.inner} component={Paper} elevation={15}>
           <Title />
           <LinearProgress />
