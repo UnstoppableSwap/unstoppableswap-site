@@ -16,6 +16,7 @@ const useStore = create((set) => ({
   setProviderList: (list: Provider[]) => {
     const sortedList = list.sort((a, b) => {
       if (a.testnet && !b.testnet) return 1;
+      if (!a.testnet && b.testnet) return -1;
       if (a.relevancy > b.relevancy) return -1;
       return 1;
     });
@@ -34,7 +35,7 @@ const useStore = create((set) => ({
   },
   currentProvider: undefined as Provider | undefined,
   setCurrentProvider: (provider: Provider) =>
-      /* @ts-expect-error */
+    /* @ts-expect-error */
     set({ currentProvider: provider }),
 }));
 

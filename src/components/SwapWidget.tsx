@@ -6,7 +6,6 @@ import {
   Typography,
   TextField,
   LinearProgress,
-  Fab,
   Button,
 } from "@material-ui/core";
 import useStore from "../store";
@@ -14,9 +13,8 @@ import ProviderSelect from "./provider-select-dialog/ProviderSelect";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import ArrowDownwardIcon from "@material-ui/icons/ArrowDownward";
 import { satsToBtc } from "../convert-utils";
-import SwapHorizIcon from "@material-ui/icons/SwapHoriz";
 import ProviderSubmitDialog from "./provider-select-dialog/ProviderSubmitDialog";
-import DownloadDialog from "./DownloadDialog";
+import DownloadButton from "./DownloadButton";
 
 const useStyles = makeStyles((theme) => ({
   outer: {
@@ -66,7 +64,6 @@ export const SwapWidget = () => {
   const classes = useStyles();
   const currentProvider = useStore((state) => state.currentProvider);
   const providerList = useStore((state) => state.providerList);
-  const [showDownloadDialog, setShowDownloadDialog] = useState(false);
 
   const [showSubmitProviderDialog, setShowSubmitProviderDialog] =
     useState(false);
@@ -149,19 +146,7 @@ export const SwapWidget = () => {
             }}
           />
           <ProviderSelect />
-          <Fab
-            variant="extended"
-            color="primary"
-            disabled={!!getBtcFieldError()}
-            onClick={() => setShowDownloadDialog(true)}
-          >
-            <SwapHorizIcon className={classes.swapIcon} />
-            Swap
-          </Fab>
-          <DownloadDialog
-            open={showDownloadDialog}
-            onClose={() => setShowDownloadDialog(false)}
-          />
+          <DownloadButton />
         </Box>
       </Box>
     );

@@ -31,7 +31,7 @@ export default function ProviderSelect() {
   const classes = useStyles();
   const currentProvider = useStore((state) => state.currentProvider);
 
-  if(!currentProvider) {
+  if (!currentProvider) {
     return null;
   }
 
