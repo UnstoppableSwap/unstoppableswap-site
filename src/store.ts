@@ -9,6 +9,7 @@ export interface Provider {
   multiAddr: string;
   testnet: boolean;
   relevancy: number;
+  peerId: string;
 }
 
 const useStore = create((set) => ({
