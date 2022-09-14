@@ -158,10 +158,13 @@ export const SwapWidget = () => {
           <Title />
           <LinearProgress />
           {showSubmitDialogOpenButton() ? (
-            <Button onClick={() => setShowSubmitProviderDialog(true)}>
-              Submit swap provider
-            </Button>
+              <Box display="flex" justifyContent="center">
+                <Button size="small" onClick={() => setShowSubmitProviderDialog(true)}>
+                  Submit swap provider
+                </Button>
+              </Box>
           ) : null}
+          <DownloadButton />
         </Box>
         <ProviderSubmitDialog
           open={showSubmitProviderDialog}
