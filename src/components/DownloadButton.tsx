@@ -13,14 +13,14 @@ import WindowsIcon from "./icons/WindowsIcon";
 import LinuxIcon from "./icons/LinuxIcon";
 import { useEffect, useState } from "react";
 
-const VERSION = "v0.3.0";
+const VERSION = "0.3.0";
 const ALL_DOWNLOADS =
   `https://github.com/UnstoppableSwap/unstoppableswap-gui/releases/tag/${VERSION}`;
 const DOWNLOAD_LINKS = {
-  win: `https://github.com/UnstoppableSwap/unstoppableswap-gui/releases/download/${VERSION}/UnstoppableSwap-Setup-${VERSION}.exe`,
-  mac: `https://github.com/UnstoppableSwap/unstoppableswap-gui/releases/download/${VERSION}/UnstoppableSwap-${VERSION}.dmg`,
+  win: `https://github.com/UnstoppableSwap/unstoppableswap-gui/releases/download/v${VERSION}/UnstoppableSwap-Setup-${VERSION}.exe`,
+  mac: `https://github.com/UnstoppableSwap/unstoppableswap-gui/releases/download/v${VERSION}/UnstoppableSwap-${VERSION}.dmg`,
   linux:
-    `https://github.com/UnstoppableSwap/unstoppableswap-gui/releases/download/${VERSION}/UnstoppableSwap-${VERSION}.AppImage`,
+    `https://github.com/UnstoppableSwap/unstoppableswap-gui/releases/download/v${VERSION}/UnstoppableSwap-${VERSION}.AppImage`,
 };
 
 const useStyles = makeStyles((theme) => ({
@@ -89,7 +89,7 @@ export default function DownloadButton() {
         <Link target="_blank" href={ALL_DOWNLOADS} color="textSecondary">
           All downloads
         </Link>{" "}
-        | {VERSION} | Current version
+        | v{VERSION} | Current version
       </Typography>
     </>
   );
