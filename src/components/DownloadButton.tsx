@@ -13,7 +13,7 @@ import WindowsIcon from "./icons/WindowsIcon";
 import LinuxIcon from "./icons/LinuxIcon";
 import { useEffect, useState } from "react";
 
-const VERSION = "0.3.0";
+const VERSION = "0.4.0";
 const ALL_DOWNLOADS =
   `https://github.com/UnstoppableSwap/unstoppableswap-gui/releases/tag/${VERSION}`;
 const DOWNLOAD_LINKS = {
