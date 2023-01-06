@@ -14,13 +14,11 @@ import LinuxIcon from "./icons/LinuxIcon";
 import { useEffect, useState } from "react";
 
 const VERSION = "0.4.2";
-const ALL_DOWNLOADS =
-  `https://github.com/UnstoppableSwap/unstoppableswap-gui/releases/tag/v${VERSION}`;
+const ALL_DOWNLOADS = `https://github.com/UnstoppableSwap/unstoppableswap-gui/releases/tag/v${VERSION}`;
 const DOWNLOAD_LINKS = {
   win: `https://github.com/UnstoppableSwap/unstoppableswap-gui/releases/download/v${VERSION}/UnstoppableSwap-Setup-${VERSION}.exe`,
   mac: `https://github.com/UnstoppableSwap/unstoppableswap-gui/releases/download/v${VERSION}/UnstoppableSwap-${VERSION}.dmg`,
-  linux:
-    `https://github.com/UnstoppableSwap/unstoppableswap-gui/releases/download/v${VERSION}/UnstoppableSwap-${VERSION}.AppImage`,
+  linux: `https://github.com/UnstoppableSwap/unstoppableswap-gui/releases/download/v${VERSION}/UnstoppableSwap-${VERSION}.AppImage`,
 };
 
 const useStyles = makeStyles((theme) => ({

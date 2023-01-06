@@ -24,7 +24,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ProviderInfo({ provider, extended }: { provider: Provider, extended: boolean }) {
+export default function ProviderInfo({
+  provider,
+  extended,
+}: {
+  provider: Provider;
+  extended: boolean;
+}) {
   const classes = useStyles();
   const uptime = Math.round(provider.uptime * 100);
   const age = Math.round(provider.age / 86400);
@@ -40,24 +46,24 @@ export default function ProviderInfo({ provider, extended }: { provider: Provide
       <Typography color="textSecondary">
         {provider.peerId.substring(0, 8)}...{provider.peerId.slice(-8)}
       </Typography>
-      {
-        extended && (
-            <>
-                <Typography variant="caption" component="p">
-                    Exchange rate: {satsToBtc(provider.price)} BTC/XMR
-                    <br />
-                    Minimum swap amount: {satsToBtc(provider.minSwapAmount)} BTC
-                    <br />
-                    Maximum swap amount: {satsToBtc(provider.maxSwapAmount)} BTC
-                </Typography>
-                <Box className={classes.chipsOuter}>
-                    <Chip label={provider.testnet ? "Testnet" : "Mainnet"} />
-                    <Chip label={`${uptime} % uptime`} />
-                    <Chip label={`Went online ${age} ${age === 1 ? "day" : "days"} ago`} />
-                </Box>
-            </>
-        )
-      }
+      {extended && (
+        <>
+          <Typography variant="caption" component="p">
+            Exchange rate: {satsToBtc(provider.price)} BTC/XMR
+            <br />
+            Minimum swap amount: {satsToBtc(provider.minSwapAmount)} BTC
+            <br />
+            Maximum swap amount: {satsToBtc(provider.maxSwapAmount)} BTC
+          </Typography>
+          <Box className={classes.chipsOuter}>
+            <Chip label={provider.testnet ? "Testnet" : "Mainnet"} />
+            <Chip label={`${uptime} % uptime`} />
+            <Chip
+              label={`Went online ${age} ${age === 1 ? "day" : "days"} ago`}
+            />
+          </Box>
+        </>
+      )}
     </Box>
   );
 }

@@ -112,54 +112,54 @@ export const SwapWidget = () => {
 
   if (currentProvider === undefined) {
     return (
-        <Box className={classes.outer}>
-          {/* @ts-expect-error */}
-          <Box className={classes.inner} component={Paper} elevation={15}>
-            <Title/>
-            <LinearProgress/>
-            <DownloadButton/>
-          </Box>
-          <ProviderSubmitDialog
-              open={showSubmitProviderDialog}
-              onClose={() => setShowSubmitProviderDialog(false)}
-          />
+      <Box className={classes.outer}>
+        {/* @ts-expect-error */}
+        <Box className={classes.inner} component={Paper} elevation={15}>
+          <Title />
+          <LinearProgress />
+          <DownloadButton />
         </Box>
+        <ProviderSubmitDialog
+          open={showSubmitProviderDialog}
+          onClose={() => setShowSubmitProviderDialog(false)}
+        />
+      </Box>
     );
   } else {
     return (
-        <Box className={classes.outer}>
-          {/* @ts-expect-error */}
-          <Box className={classes.inner} component={Paper} elevation={15}>
-            <Title/>
-            <TextField
-                label="Send"
-                size="medium"
-                variant="outlined"
-                value={btcFieldValue}
-                onChange={onBtcAmountChange}
-                error={!!getBtcFieldError()}
-                helperText={getBtcFieldError()}
-                autoFocus
-                InputProps={{
-                  endAdornment: <InputAdornment position="end">BTC</InputAdornment>,
-                }}
-            />
-            <Box className={classes.swapIconOuter}>
-              <ArrowDownwardIcon fontSize="small"/>
-            </Box>
-            <TextField
-                label="Receive"
-                variant="outlined"
-                size="medium"
-                value={xmrFieldValue.toFixed(4)}
-                InputProps={{
-                  endAdornment: <InputAdornment position="end">XMR</InputAdornment>,
-                }}
-            />
-            <ProviderSelect/>
-            <DownloadButton/>
+      <Box className={classes.outer}>
+        {/* @ts-expect-error */}
+        <Box className={classes.inner} component={Paper} elevation={15}>
+          <Title />
+          <TextField
+            label="Send"
+            size="medium"
+            variant="outlined"
+            value={btcFieldValue}
+            onChange={onBtcAmountChange}
+            error={!!getBtcFieldError()}
+            helperText={getBtcFieldError()}
+            autoFocus
+            InputProps={{
+              endAdornment: <InputAdornment position="end">BTC</InputAdornment>,
+            }}
+          />
+          <Box className={classes.swapIconOuter}>
+            <ArrowDownwardIcon fontSize="small" />
           </Box>
+          <TextField
+            label="Receive"
+            variant="outlined"
+            size="medium"
+            value={xmrFieldValue.toFixed(4)}
+            InputProps={{
+              endAdornment: <InputAdornment position="end">XMR</InputAdornment>,
+            }}
+          />
+          <ProviderSelect />
+          <DownloadButton />
         </Box>
+      </Box>
     );
   }
 };
