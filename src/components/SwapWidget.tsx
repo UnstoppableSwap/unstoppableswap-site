@@ -63,15 +63,11 @@ const Title = () => {
 export const SwapWidget = () => {
   const classes = useStyles();
   const currentProvider = useStore((state) => state.currentProvider);
-  const providerList = useStore((state) => state.providerList);
 
   const [showSubmitProviderDialog, setShowSubmitProviderDialog] =
     useState(false);
   const [btcFieldValue, setBtcFieldValue] = useState<string | number>(0.02);
   const [xmrFieldValue, setXmrFieldValue] = useState(1);
-
-  const showSubmitDialogOpenButton = () =>
-    Array.isArray(providerList) && providerList.length === 0;
 
   function onBtcAmountChange(event: ChangeEvent<HTMLInputElement>) {
     setBtcFieldValue(event.target.value);
@@ -114,63 +110,56 @@ export const SwapWidget = () => {
     }
   }, [currentProvider]);
 
-  if (currentProvider !== undefined) {
+  if (currentProvider === undefined) {
     return (
-      <Box className={classes.outer}>
-        {/* @ts-expect-error */}
-        <Box className={classes.inner} component={Paper} elevation={15}>
-          <Title />
-          <TextField
-            label="Send"
-            size="medium"
-            variant="outlined"
-            value={btcFieldValue}
-            onChange={onBtcAmountChange}
-            error={!!getBtcFieldError()}
-            helperText={getBtcFieldError()}
-            autoFocus
-            InputProps={{
-              endAdornment: <InputAdornment position="end">BTC</InputAdornment>,
-            }}
-          />
-          <Box className={classes.swapIconOuter}>
-            <ArrowDownwardIcon fontSize="small" />
+        <Box className={classes.outer}>
+          {/* @ts-expect-error */}
+          <Box className={classes.inner} component={Paper} elevation={15}>
+            <Title/>
+            <LinearProgress/>
+            <DownloadButton/>
           </Box>
-          <TextField
-            label="Receive"
-            variant="outlined"
-            size="medium"
-            value={xmrFieldValue.toFixed(4)}
-            InputProps={{
-              endAdornment: <InputAdornment position="end">XMR</InputAdornment>,
-            }}
+          <ProviderSubmitDialog
+              open={showSubmitProviderDialog}
+              onClose={() => setShowSubmitProviderDialog(false)}
           />
-          <ProviderSelect />
-          <DownloadButton />
         </Box>
-      </Box>
     );
   } else {
     return (
-      <Box className={classes.outer}>
-        {/* @ts-expect-error */}
-        <Box className={classes.inner} component={Paper} elevation={15}>
-          <Title />
-          <LinearProgress />
-          {showSubmitDialogOpenButton() ? (
-              <Box display="flex" justifyContent="center">
-                <Button size="small" onClick={() => setShowSubmitProviderDialog(true)}>
-                  Submit swap provider
-                </Button>
-              </Box>
-          ) : null}
-          <DownloadButton />
+        <Box className={classes.outer}>
+          {/* @ts-expect-error */}
+          <Box className={classes.inner} component={Paper} elevation={15}>
+            <Title/>
+            <TextField
+                label="Send"
+                size="medium"
+                variant="outlined"
+                value={btcFieldValue}
+                onChange={onBtcAmountChange}
+                error={!!getBtcFieldError()}
+                helperText={getBtcFieldError()}
+                autoFocus
+                InputProps={{
+                  endAdornment: <InputAdornment position="end">BTC</InputAdornment>,
+                }}
+            />
+            <Box className={classes.swapIconOuter}>
+              <ArrowDownwardIcon fontSize="small"/>
+            </Box>
+            <TextField
+                label="Receive"
+                variant="outlined"
+                size="medium"
+                value={xmrFieldValue.toFixed(4)}
+                InputProps={{
+                  endAdornment: <InputAdornment position="end">XMR</InputAdornment>,
+                }}
+            />
+            <ProviderSelect/>
+            <DownloadButton/>
+          </Box>
         </Box>
-        <ProviderSubmitDialog
-          open={showSubmitProviderDialog}
-          onClose={() => setShowSubmitProviderDialog(false)}
-        />
-      </Box>
     );
   }
 };
