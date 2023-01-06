@@ -6,6 +6,7 @@ import FaqSection from "./FaqSection";
 import indigo from "@material-ui/core/colors/indigo";
 import Footer from "./Footer";
 import FundingAlert from "./alerts/FundingAlert";
+import BetaAlert from "./alerts/BetaAlert";
 
 const useStyles = makeStyles((theme) => ({
   main: {
@@ -47,6 +48,7 @@ export default function App() {
         <Box className={classes.content}>
           <MarketingPhraseHeadline />
           <SwapWidget />
+          <BetaAlert />
           <FundingAlert />
           <FaqSection />
         </Box>
