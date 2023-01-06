@@ -31,7 +31,7 @@ export default function ProviderSelect() {
   const classes = useStyles();
   const currentProvider = useStore((state) => state.currentProvider);
 
-  if(!currentProvider) {
+  if (!currentProvider) {
     return null;
   }
 
@@ -70,7 +70,7 @@ export default function ProviderSelect() {
       <ButtonBase className={classes.inner} onClick={handleSelectDialogOpen}>
         <Card variant="outlined" className={classes.providerCard}>
           <CardContent className={classes.providerCardContent}>
-            <ProviderInfo provider={currentProvider} />
+            <ProviderInfo extended={false} provider={currentProvider} />
             <ArrowForwardIosIcon />
           </CardContent>
         </Card>
