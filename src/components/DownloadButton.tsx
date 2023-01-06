@@ -15,7 +15,7 @@ import { useEffect, useState } from "react";
 
 const VERSION = "0.4.2";
 const ALL_DOWNLOADS =
-  `https://github.com/UnstoppableSwap/unstoppableswap-gui/releases/tag/${VERSION}`;
+  `https://github.com/UnstoppableSwap/unstoppableswap-gui/releases/tag/v${VERSION}`;
 const DOWNLOAD_LINKS = {
   win: `https://github.com/UnstoppableSwap/unstoppableswap-gui/releases/download/v${VERSION}/UnstoppableSwap-Setup-${VERSION}.exe`,
   mac: `https://github.com/UnstoppableSwap/unstoppableswap-gui/releases/download/v${VERSION}/UnstoppableSwap-${VERSION}.dmg`,
@@ -25,9 +25,16 @@ const DOWNLOAD_LINKS = {
 
 const useStyles = makeStyles((theme) => ({
   outer: {
+    paddingTop: theme.spacing(1),
+    display: "flex",
+    flexDirection: "column",
+    gap: theme.spacing(1),
+  },
+  upperBox: {
     display: "flex",
     gap: theme.spacing(1),
-    alignItems: "center",
+    width: "100%",
+    padding: theme.spacing(0),
   },
   buttonOuter: {
     flex: 1,
@@ -61,12 +68,12 @@ export default function DownloadButton() {
   }, [os]);
 
   return (
-    <>
-      <Box className={classes.outer}>
+    <Box className={classes.outer}>
+      <Box className={classes.upperBox}>
         <a href={downloadLink} className={classes.buttonOuter}>
           <Fab variant="extended" color="primary" className={classes.button}>
             <GetAppIcon />
-            Install GUI
+            Install Desktop App
           </Fab>
         </a>
         <Select
@@ -91,6 +98,6 @@ export default function DownloadButton() {
         </Link>{" "}
         | v{VERSION} | Current version
       </Typography>
-    </>
+    </Box>
   );
 }
