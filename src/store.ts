@@ -7,6 +7,7 @@ export interface Provider {
   uptime: number;
   age: number;
   multiAddr: string;
+  peerId: string;
   testnet: boolean;
   relevancy: number;
 }
@@ -27,7 +28,7 @@ const useStore = create((set) => ({
         providerList: sortedList,
         currentProvider: state.currentProvider
           ? sortedList.find(
-              (p) => p.multiAddr === state.currentProvider.multiAddr
+              (p) => p.peerId === state.currentProvider.peerId
             ) || sortedList[0]
           : sortedList[0], // Tries to find the same provider by peer id and falls back to first of list when no longer present
       };
