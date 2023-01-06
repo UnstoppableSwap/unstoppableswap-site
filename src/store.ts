@@ -10,7 +10,6 @@ export interface Provider {
   peerId: string;
   testnet: boolean;
   relevancy: number;
-  peerId: string;
 }
 
 const useStore = create((set) => ({
