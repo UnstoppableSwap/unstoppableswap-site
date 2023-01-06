@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
     width: "min(480px, 100%)",
     minHeight: "150px",
     display: "grid",
-    padding: theme.spacing(1),
+    padding: theme.spacing(1.5),
     gridGap: theme.spacing(1),
   },
   header: {
