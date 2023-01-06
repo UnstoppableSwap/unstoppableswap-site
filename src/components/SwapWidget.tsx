@@ -6,7 +6,6 @@ import {
   Typography,
   TextField,
   LinearProgress,
-  Fab,
   Button,
 } from "@material-ui/core";
 import useStore from "../store";
@@ -14,9 +13,8 @@ import ProviderSelect from "./provider-select-dialog/ProviderSelect";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import ArrowDownwardIcon from "@material-ui/icons/ArrowDownward";
 import { satsToBtc } from "../convert-utils";
-import SwapHorizIcon from "@material-ui/icons/SwapHoriz";
 import ProviderSubmitDialog from "./provider-select-dialog/ProviderSubmitDialog";
-import DownloadDialog from "./DownloadDialog";
+import DownloadButton from "./DownloadButton";
 
 const useStyles = makeStyles((theme) => ({
   outer: {
@@ -29,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
     width: "min(480px, 100%)",
     minHeight: "150px",
     display: "grid",
-    padding: theme.spacing(1),
+    padding: theme.spacing(1.5),
     gridGap: theme.spacing(1),
   },
   header: {
@@ -65,16 +63,11 @@ const Title = () => {
 export const SwapWidget = () => {
   const classes = useStyles();
   const currentProvider = useStore((state) => state.currentProvider);
-  const providerList = useStore((state) => state.providerList);
-  const [showDownloadDialog, setShowDownloadDialog] = useState(false);
 
   const [showSubmitProviderDialog, setShowSubmitProviderDialog] =
     useState(false);
   const [btcFieldValue, setBtcFieldValue] = useState<string | number>(0.02);
   const [xmrFieldValue, setXmrFieldValue] = useState(1);
-
-  const showSubmitDialogOpenButton = () =>
-    Array.isArray(providerList) && providerList.length === 0;
 
   function onBtcAmountChange(event: ChangeEvent<HTMLInputElement>) {
     setBtcFieldValue(event.target.value);
@@ -117,7 +110,22 @@ export const SwapWidget = () => {
     }
   }, [currentProvider]);
 
-  if (currentProvider !== undefined) {
+  if (currentProvider === undefined) {
+    return (
+      <Box className={classes.outer}>
+        {/* @ts-expect-error */}
+        <Box className={classes.inner} component={Paper} elevation={15}>
+          <Title />
+          <LinearProgress />
+          <DownloadButton />
+        </Box>
+        <ProviderSubmitDialog
+          open={showSubmitProviderDialog}
+          onClose={() => setShowSubmitProviderDialog(false)}
+        />
+      </Box>
+    );
+  } else {
     return (
       <Box className={classes.outer}>
         {/* @ts-expect-error */}
@@ -149,39 +157,8 @@ export const SwapWidget = () => {
             }}
           />
           <ProviderSelect />
-          <Fab
-            variant="extended"
-            color="primary"
-            disabled={!!getBtcFieldError()}
-            onClick={() => setShowDownloadDialog(true)}
-          >
-            <SwapHorizIcon className={classes.swapIcon} />
-            Swap
-          </Fab>
-          <DownloadDialog
-            open={showDownloadDialog}
-            onClose={() => setShowDownloadDialog(false)}
-          />
+          <DownloadButton />
         </Box>
-      </Box>
-    );
-  } else {
-    return (
-      <Box className={classes.outer}>
-        {/* @ts-expect-error */}
-        <Box className={classes.inner} component={Paper} elevation={15}>
-          <Title />
-          <LinearProgress />
-          {showSubmitDialogOpenButton() ? (
-            <Button onClick={() => setShowSubmitProviderDialog(true)}>
-              Submit swap provider
-            </Button>
-          ) : null}
-        </Box>
-        <ProviderSubmitDialog
-          open={showSubmitProviderDialog}
-          onClose={() => setShowSubmitProviderDialog(false)}
-        />
       </Box>
     );
   }

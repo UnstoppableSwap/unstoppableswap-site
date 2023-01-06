@@ -55,7 +55,11 @@ export default function ProviderSelectDialog({
               onClick={() => handleProviderChange(provider)}
               key={provider.multiAddr}
             >
-              <ProviderInfo provider={provider} key={provider.multiAddr} />
+              <ProviderInfo
+                extended={true}
+                provider={provider}
+                key={provider.multiAddr}
+              />
             </ListItem>
           ))}
           <ListItem autoFocus button onClick={onSubmitDialogOpen}>

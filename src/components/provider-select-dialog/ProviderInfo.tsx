@@ -26,7 +26,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ProviderInfo({ provider }: { provider: Provider }) {
+export default function ProviderInfo({
+  provider,
+  extended,
+}: {
+  provider: Provider;
+  extended: boolean;
+}) {
   const classes = useStyles();
   const uptime = Math.round(provider.uptime * 100);
   const age = Math.round(provider.age / 86400);
@@ -39,21 +45,30 @@ export default function ProviderInfo({ provider }: { provider: Provider }) {
       <Typography variant="h5" component="h2">
         {provider.multiAddr}
       </Typography>
-      <Typography variant="caption" component="p">
-        Exchange rate: {satsToBtc(provider.price)} BTC/XMR
-        <br />
-        Minimum swap amount: {satsToBtc(provider.minSwapAmount)} BTC
-        <br />
-        Maximum swap amount: {satsToBtc(provider.maxSwapAmount)} BTC
+      <Typography color="textSecondary">
+        {provider.peerId.substring(0, 8)}...{provider.peerId.slice(-8)}
       </Typography>
-      <Box className={classes.chipsOuter}>
-        <Chip label={provider.testnet ? "Testnet" : "Mainnet"} />
-        <Chip label={`${uptime} % uptime`} />
-        <Chip label={`Went online ${age} ${age === 1 ? "day" : "days"} ago`} />
-        <IconButton color="default" component="span" onClick={() => clipboard.write(provider.multiAddr + "/p2p/" + provider.peerId)}>
-          <FileCopyIcon />
-        </IconButton>
-      </Box>
+      {extended && (
+        <>
+          <Typography variant="caption" component="p">
+            Exchange rate: {satsToBtc(provider.price)} BTC/XMR
+            <br />
+            Minimum swap amount: {satsToBtc(provider.minSwapAmount)} BTC
+            <br />
+            Maximum swap amount: {satsToBtc(provider.maxSwapAmount)} BTC
+          </Typography>
+          <Box className={classes.chipsOuter}>
+            <Chip label={provider.testnet ? "Testnet" : "Mainnet"} />
+            <Chip label={`${uptime} % uptime`} />
+            <Chip
+              label={`Went online ${age} ${age === 1 ? "day" : "days"} ago`}
+            />
+            <IconButton color="default" component="span" onClick={() => clipboard.write(provider.multiAddr + "/p2p/" + provider.peerId)}>
+              <FileCopyIcon />
+            </IconButton>
+          </Box>
+        </>
+      )}
     </Box>
   );
 }
