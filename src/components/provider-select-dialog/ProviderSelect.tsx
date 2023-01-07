@@ -24,6 +24,7 @@ const useStyles = makeStyles({
   providerCardContent: {
     display: "flex",
     alignItems: "center",
+    marginBottom: '-8px',
   },
 });
 
@@ -69,7 +70,7 @@ export default function ProviderSelect() {
 
       <ButtonBase className={classes.inner} onClick={handleSelectDialogOpen}>
         <Card variant="outlined" className={classes.providerCard}>
-          <CardContent className={classes.providerCardContent}>
+          <CardContent className={classes.providerCardContent} >
             <ProviderInfo extended={false} provider={currentProvider} />
             <ArrowForwardIosIcon />
           </CardContent>
