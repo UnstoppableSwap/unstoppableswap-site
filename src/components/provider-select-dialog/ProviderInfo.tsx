@@ -1,14 +1,20 @@
-import { makeStyles, Box, Typography, Chip, IconButton } from "@material-ui/core";
+import {
+  makeStyles,
+  Box,
+  Typography,
+  Chip,
+  IconButton,
+} from "@material-ui/core";
 import { satsToBtc } from "../../convert-utils";
 import { Provider } from "../../store";
-import FileCopyIcon from '@material-ui/icons/FileCopy';
-import clipboard from 'clipboardy';
+import FileCopyIcon from "@material-ui/icons/FileCopy";
+import clipboard from "clipboardy";
 
 const useStyles = makeStyles((theme) => ({
   title: {
     fontSize: 14,
   },
-  pos: {  
+  pos: {
     marginBottom: theme.spacing(1),
   },
   content: {
@@ -63,7 +69,13 @@ export default function ProviderInfo({
             <Chip
               label={`Went online ${age} ${age === 1 ? "day" : "days"} ago`}
             />
-            <IconButton color="default" component="span" onClick={() => clipboard.write(provider.multiAddr + "/p2p/" + provider.peerId)}>
+            <IconButton
+              color="default"
+              component="span"
+              onClick={() =>
+                clipboard.write(provider.multiAddr + "/p2p/" + provider.peerId)
+              }
+            >
               <FileCopyIcon />
             </IconButton>
           </Box>
