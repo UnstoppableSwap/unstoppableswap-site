@@ -7,6 +7,8 @@ import indigo from "@material-ui/core/colors/indigo";
 import Footer from "./Footer";
 import FundingAlert from "./alerts/FundingAlert";
 import BetaAlert from "./alerts/BetaAlert";
+import ScreenshotSlideshow from "./ScreenshotSlideshow";
+import DownloadSection from "./DownloadSection";
 
 const useStyles = makeStyles((theme) => ({
   main: {
@@ -25,6 +27,7 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2),
     gridGap: theme.spacing(2),
     flex: 1,
+    alignItems: "center",
   },
 }));
 
@@ -47,7 +50,8 @@ export default function App() {
       <Box className={classes.main}>
         <Box className={classes.content}>
           <MarketingPhraseHeadline />
-          <SwapWidget />
+          <ScreenshotSlideshow />
+          <DownloadSection />
           <BetaAlert />
           <FundingAlert />
           <FaqSection />

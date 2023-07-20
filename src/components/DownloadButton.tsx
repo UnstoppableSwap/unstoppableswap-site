@@ -1,5 +1,6 @@
 import {
   Box,
+  Button,
   Fab,
   Link,
   makeStyles,
@@ -23,15 +24,14 @@ const DOWNLOAD_LINKS = {
 
 const useStyles = makeStyles((theme) => ({
   outer: {
-    paddingTop: theme.spacing(1),
     display: "flex",
     flexDirection: "column",
     gap: theme.spacing(1),
+    maxWidth: "min(400px, 80vw)",
   },
   upperBox: {
     display: "flex",
     gap: theme.spacing(1),
-    width: "100%",
     padding: theme.spacing(0),
   },
   buttonOuter: {
@@ -69,26 +69,19 @@ export default function DownloadButton() {
     <Box className={classes.outer}>
       <Box className={classes.upperBox}>
         <a href={downloadLink} className={classes.buttonOuter}>
-          <Fab variant="extended" color="primary" className={classes.button}>
+          <Button
+            variant="contained"
+            size="large"
+            color="primary"
+            className={classes.button}
+          >
             <GetAppIcon />
-            Install Desktop App
-          </Fab>
+            Download Desktop App
+          </Button>
         </a>
-        <Select
-          variant="standard"
-          value={os}
-          onChange={(event) => setOs(event.target.value as string)}
-        >
-          <MenuItem value={"linux"}>
-            <LinuxIcon />
-          </MenuItem>
-          <MenuItem value={"mac"}>
-            <AppleIcon />
-          </MenuItem>
-          <MenuItem value={"win"}>
-            <WindowsIcon />
-          </MenuItem>
-        </Select>
+        <Button variant="outlined" color="default">
+          Get Started
+        </Button>
       </Box>
       <Typography variant="caption" color="textSecondary">
         <Link target="_blank" href={ALL_DOWNLOADS} color="textSecondary">

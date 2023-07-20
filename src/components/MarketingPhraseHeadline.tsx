@@ -1,52 +1,52 @@
-import { useEffect, useRef } from "react";
-import { Typography, makeStyles, Hidden } from "@material-ui/core";
-import Typed from "typed.js";
+import { useEffect, useState } from "react";
+import { Typography, makeStyles } from "@material-ui/core";
+
+const WORD_CHANGE_INTERVAL_SECS = 3;
 
 const useStyles = makeStyles({
   headline: {
     minHeight: "2.5em",
   },
+  fadeInOut: {
+    animation: `$fadeInOut ${WORD_CHANGE_INTERVAL_SECS}s linear infinite`,
+  },
+  "@keyframes fadeInOut": {
+    "0%": { opacity: 0 },
+    "20%": { opacity: 1 },
+    "80%": { opacity: 1 },
+    "100%": { opacity: 0 },
+  },
 });
 
 export const MarketingPhraseHeadline = () => {
   const classes = useStyles();
-  const el = useRef(null);
-  const typed = useRef<Typed | null>(null);
+  const [index, setIndex] = useState(0);
+
+  const strings = [
+    "trustlessly",
+    "anonymously",
+    "securely",
+    "without KYC",
+    "without risk",
+    "freely",
+    "reliably",
+    "peer-to-peer"
+  ];
 
   useEffect(() => {
-    const options = {
-      strings: [
-        "trustlessly",
-        "anonymously",
-        "securely",
-        "without KYC",
-        "without risk",
-        "freely",
-        "trustlessly",
-      ],
-      typeSpeed: 50,
-      backSpeed: 50,
-      backDelay: 2000,
-    };
-
-    if (el.current) {
-      typed.current = new Typed(el.current, options);
-    }
-
-    return () => {
-      typed.current?.destroy();
-    };
-  }, []);
+    const interval = setInterval(() => {
+      setIndex((i) => (i + 1) % strings.length);
+    }, WORD_CHANGE_INTERVAL_SECS * 1000);
+    return () => clearInterval(interval);
+  }, [strings.length]);
 
   return (
-    <Typography variant="h3" display="inline" className={classes.headline}>
-      Exchange Bitcoin for Monero
-      <Typography variant="inherit" color="primary">
-        {" "}
-        <span ref={el} />
+      <Typography variant="h3" display="inline" className={classes.headline}>
+        Exchange Bitcoin for Monero
+        <Typography variant="inherit" color="primary" className={classes.fadeInOut}>
+          {" " + strings[index]}
+        </Typography>
       </Typography>
-      <Hidden smDown>using Atomic Swaps</Hidden>
-    </Typography>
   );
 };
 
