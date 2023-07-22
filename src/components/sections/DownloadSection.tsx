@@ -1,7 +1,7 @@
-import DownloadButton from "./DownloadButton";
+import DownloadButton from "../DownloadButton";
 import { Box, makeStyles } from "@material-ui/core";
 import { useState } from "react";
-import ReadDocsButton from "./ReadDocsButton";
+import ViewCodeButton from "../ReadDocsButton";
 
 const useStyles = makeStyles((theme) => ({
   outer: {

@@ -1,14 +1,13 @@
-import { Box, makeStyles, CssBaseline } from "@material-ui/core";
+import { Box, makeStyles, CssBaseline, useMediaQuery } from "@material-ui/core";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
-import SwapWidget from "./SwapWidget";
-import MarketingPhraseHeadline from "./MarketingPhraseHeadline";
-import FaqSection from "./FaqSection";
+import FaqSection from "./sections/FaqSection";
 import indigo from "@material-ui/core/colors/indigo";
 import Footer from "./Footer";
-import FundingAlert from "./alerts/FundingAlert";
-import BetaAlert from "./alerts/BetaAlert";
+import FeaturesSection from "./sections/FeaturesSection";
+import MarketingPhraseHeadline from "./MarketingPhraseHeadline";
+import DownloadButton from "./DownloadButton";
 import ScreenshotSlideshow from "./ScreenshotSlideshow";
-import DownloadSection from "./DownloadSection";
+import AlertsSection from "./sections/AlertsSection";
 
 const useStyles = makeStyles((theme) => ({
   main: {
@@ -25,9 +24,14 @@ const useStyles = makeStyles((theme) => ({
     display: "grid",
     flexDirection: "column",
     padding: theme.spacing(2),
-    gridGap: theme.spacing(2),
+    gridGap: theme.spacing(6),
     flex: 1,
     alignItems: "center",
+  },
+  faqAlertSection: {
+    display: "flex",
+    flexDirection: "column",
+    gap: theme.spacing(2),
   },
 }));
 
@@ -41,6 +45,64 @@ let theme = createMuiTheme({
   },
 });
 
+function Content() {
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const classes = useStyles();
+
+  if (!isMobile) {
+    return (
+      <Box className={classes.content}>
+        <Box className={classes.content}>
+          <Box
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "space-between",
+            }}
+          >
+            <Box
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+              }}
+            >
+              <MarketingPhraseHeadline />
+              <DownloadButton />
+            </Box>
+            <ScreenshotSlideshow />
+          </Box>
+          <FeaturesSection />
+          <Box className={classes.faqAlertSection}>
+            <AlertsSection />
+            <FaqSection />
+          </Box>
+        </Box>
+      </Box>
+    );
+  } else {
+    return (
+      <Box className={classes.content}>
+        <MarketingPhraseHeadline />
+        <Box
+          display="flex"
+          alignItems="center"
+          flexDirection="column"
+          gridGap="20px"
+        >
+          <ScreenshotSlideshow />
+          <DownloadButton />
+        </Box>
+        <FeaturesSection />
+        <Box className={classes.faqAlertSection}>
+          <AlertsSection />
+          <FaqSection />
+        </Box>
+      </Box>
+    );
+  }
+}
+
 export default function App() {
   const classes = useStyles();
 
@@ -48,14 +110,7 @@ export default function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Box className={classes.main}>
-        <Box className={classes.content}>
-          <MarketingPhraseHeadline />
-          <ScreenshotSlideshow />
-          <DownloadSection />
-          <BetaAlert />
-          <FundingAlert />
-          <FaqSection />
-        </Box>
+        <Content />
         <Footer />
       </Box>
     </ThemeProvider>

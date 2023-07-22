@@ -15,6 +15,7 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     flexDirection: "column",
     alignItems: "center",
+    justifyContent: "center",
   },
   innerImg: {
     width: "min(1000px, 100%)",
@@ -41,7 +42,7 @@ export default function ScreenshotSlideshow() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setPage((page + 1) % images.length); // Go to the next page, wrap to the beginning if necessary
-    }, 5000); // 8 seconds
+    }, 10000); // 8 seconds
 
     return () => {
       clearTimeout(timer); // Clear the timer whenever the page changes or the component unmounts

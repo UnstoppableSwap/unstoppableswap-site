@@ -8,7 +8,7 @@ import {
   TextField,
 } from "@material-ui/core";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import APITable from "./APITable";
+import APITable from "../APITable";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -45,7 +45,11 @@ const questionsAndAnswers = [
         ingenious cryptographers. Specifically the research made by the COMIT
         Team and the Farcaster Project. If you want to know learn more about
         BTC-XMR Atomic Swaps, please read the blog posts by the{" "}
-        <a href="https://comit.network/blog/" target="_blank" rel="noreferrer">
+        <a
+          href="src/components/sections/FaqSection"
+          target="_blank"
+          rel="noreferrer"
+        >
           COMIT team
         </a>{" "}
         and the{" "}

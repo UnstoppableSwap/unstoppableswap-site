@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { Typography, makeStyles } from "@material-ui/core";
+import { Typography, makeStyles, Box } from "@material-ui/core";
 
 const WORD_CHANGE_INTERVAL_SECS = 3;
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   headline: {
     minHeight: "2.5em",
   },
@@ -16,9 +16,15 @@ const useStyles = makeStyles({
     "80%": { opacity: 1 },
     "100%": { opacity: 0 },
   },
-});
+  outer: {
+    display: "flex",
+    flexDirection: "column",
+    gap: theme.spacing(1),
+    paddingBottom: theme.spacing(),
+  },
+}));
 
-export const MarketingPhraseHeadline = () => {
+export function MarketingPhraseHeadline() {
   const classes = useStyles();
   const [index, setIndex] = useState(0);
 
@@ -30,7 +36,7 @@ export const MarketingPhraseHeadline = () => {
     "without risk",
     "freely",
     "reliably",
-    "peer-to-peer"
+    "peer-to-peer",
   ];
 
   useEffect(() => {
@@ -41,13 +47,33 @@ export const MarketingPhraseHeadline = () => {
   }, [strings.length]);
 
   return (
+    <Box className={classes.outer}>
       <Typography variant="h3" display="inline" className={classes.headline}>
         Exchange Bitcoin for Monero
-        <Typography variant="inherit" color="primary" className={classes.fadeInOut}>
+        <Typography
+          variant="inherit"
+          color="primary"
+          className={classes.fadeInOut}
+        >
           {" " + strings[index]}
         </Typography>
       </Typography>
+      <Typography
+        variant="subtitle1"
+        style={{
+          fontSize: "18px",
+          opacity: 0.7,
+        }}
+      >
+        using Atomic Swaps through UnstoppableSwap's open-source desktop
+        software.
+        <br />
+        No registration required. No KYC, no middleman and completely anonymous
+        over the Tor network. Be freed from the tyranny of centralized
+        exchanges!
+      </Typography>
+    </Box>
   );
-};
+}
 
 export default MarketingPhraseHeadline;
