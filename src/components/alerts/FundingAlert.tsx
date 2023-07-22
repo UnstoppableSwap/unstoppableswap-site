@@ -9,8 +9,14 @@ export default function FundingAlert() {
       team's Github repository if you are a developer and would like to help.
       You can also help us fund our operations by directly donating to:
       <TextField
+        label="Monero Donation Address"
         fullWidth
         value="87jS4C7ngk9EHdqFFuxGFgg8AyH63dRUoULshWDybFJaP75UA89qsutG5B1L1QTc4w228nsqsv8EjhL7bz8fB3611Mh98mg"
+      />
+      <TextField
+        label="Bitcoin Donation Address"
+        fullWidth
+        value="bc1q8hj4aq59fucrhz59rxpqnwgy8y6spxxvq4wcj2"
       />
     </Alert>
   );
