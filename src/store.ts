@@ -13,7 +13,7 @@ export interface Provider {
 }
 
 const useStore = create((set) => ({
-  providerList: [] as Provider[],
+  providerList: null as (Provider[] | null),
   setProviderList: (list: Provider[]) => {
     const sortedList = list.sort((a, b) => {
       if (a.testnet && !b.testnet) return 1;
@@ -33,10 +33,6 @@ const useStore = create((set) => ({
       };
     });
   },
-  currentProvider: undefined as Provider | undefined,
-  setCurrentProvider: (provider: Provider) =>
-    /* @ts-expect-error */
-    set({ currentProvider: provider }),
 }));
 
 export default useStore;

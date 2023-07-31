@@ -8,6 +8,7 @@ import MarketingPhraseHeadline from "./MarketingPhraseHeadline";
 import DownloadButton from "./DownloadButton";
 import ScreenshotSlideshow from "./ScreenshotSlideshow";
 import AlertsSection from "./sections/AlertsSection";
+import ProviderTable from "./ProviderTable";
 
 const useStyles = makeStyles((theme) => ({
   main: {
@@ -74,6 +75,7 @@ function Content() {
           </Box>
           <FeaturesSection />
           <Box className={classes.faqAlertSection}>
+            <ProviderTable />
             <AlertsSection />
             <FaqSection />
           </Box>
@@ -95,6 +97,7 @@ function Content() {
         </Box>
         <FeaturesSection />
         <Box className={classes.faqAlertSection}>
+          <ProviderTable />
           <AlertsSection />
           <FaqSection />
         </Box>
