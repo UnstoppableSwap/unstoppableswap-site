@@ -58,14 +58,14 @@ function Content() {
             style={{
               display: "flex",
               flexDirection: "row",
-              justifyContent: "space-between",
+              justifyContent: "space-around",
             }}
           >
             <Box
               style={{
                 display: "flex",
                 flexDirection: "column",
-                justifyContent: "space-between",
+                justifyContent: "space-around",
               }}
             >
               <MarketingPhraseHeadline />

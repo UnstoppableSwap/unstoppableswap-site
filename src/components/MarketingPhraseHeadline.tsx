@@ -32,7 +32,6 @@ export function MarketingPhraseHeadline() {
     "trustlessly",
     "anonymously",
     "securely",
-    "without KYC",
     "without risk",
     "freely",
     "reliably",
@@ -67,10 +66,8 @@ export function MarketingPhraseHeadline() {
       >
         using Atomic Swaps through UnstoppableSwap's open-source desktop
         software.
-        <br />
-        No registration required. No KYC, no middleman and completely anonymous
-        over the Tor network. Be freed from the tyranny of centralized
-        exchanges!
+        No registration required. No middleman and completely anonymous
+        over the Tor network.
       </Typography>
     </Box>
   );

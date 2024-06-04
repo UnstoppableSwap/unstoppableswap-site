@@ -100,7 +100,7 @@ export default function DownloadButton() {
             className={classes.button}
             endIcon={<GetAppIcon />}
           >
-            Download Desktop App
+            Download
           </Button>
         </a>
         <ViewCodeButton />
