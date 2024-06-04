@@ -59,7 +59,7 @@ export default function FeaturesSection() {
     {
       title: "Private",
       description:
-        "No identify verification, no email, no nothing. All connections are end-to-end encrypted and sent over the Tor network.",
+        "No email, no phone number, no nothing. All connections are end-to-end encrypted and sent over the Tor network.",
       // @ts-ignore
       icon: <AnonymousIcon />,
     },
