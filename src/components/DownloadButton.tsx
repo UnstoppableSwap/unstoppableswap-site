@@ -15,7 +15,7 @@ import LinuxIcon from "./icons/LinuxIcon";
 import { useEffect, useState } from "react";
 import GitHubIcon from "@material-ui/icons/GitHub";
 
-const VERSION = "0.6.2";
+const VERSION = "0.6.1";
 export const GITHUB_URL =
   "https://github.com/UnstoppableSwap/unstoppableswap-gui";
 const ALL_DOWNLOADS = `${GITHUB_URL}/releases/tag/v${VERSION}`;
