@@ -21,7 +21,6 @@ RUN npm install -g serve
 
 # Expose the specified port
 EXPOSE ${PORT}
-ENV PORT=${PORT}
 
 # Serve
 CMD ["sh", "serve -s dist -l tcp://0.0.0.0:$PORT"]
