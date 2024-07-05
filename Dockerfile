@@ -1,26 +1,11 @@
-# Use the official Node.js image as the base
-FROM node:lts-alpine
-
-# Set the working directory
+# Build stage
+FROM node:lts-alpine as build
 WORKDIR /app
-
-# Copy package.json and package-lock.json
 COPY package*.json ./
-
-# Install dependencies
 RUN npm ci
-
-# Copy the entire project
 COPY . .
-
-# Build the Vite app
 RUN npm run build
 
-# Use a lightweight web server to serve the static files
-RUN npm install -g serve
-
-# Expose the specified port
-EXPOSE 3000
-
-# Serve
-CMD ["sh", "serve -s dist -l tcp://0.0.0.0:3000"]
+# Serve stage
+FROM halverneus/static-file-server:latest
+COPY --from=build /app/dist /web
