@@ -8,5 +8,5 @@ RUN npm run build
 
 # Serve stage
 FROM halverneus/static-file-server:latest
-ENV FOLDER /app/dist
+COPY --from=build /app/dist /web
 CMD ["/serve"]
