@@ -11,12 +11,12 @@ export default function FundingAlert() {
       <TextField
         label="Monero Donation Address"
         fullWidth
-        value="87jS4C7ngk9EHdqFFuxGFgg8AyH63dRUoULshWDybFJaP75UA89qsutG5B1L1QTc4w228nsqsv8EjhL7bz8fB3611Mh98mg"
+        value="49LEH26DJGuCyr8xzRAzWPUryzp7bpccC7Hie1DiwyfJEyUKvMFAethRLybDYrFdU1eHaMkKQpUPebY4WT3cSjEvThmpjPa"
       />
       <TextField
         label="Bitcoin Donation Address"
         fullWidth
-        value="bc1q8hj4aq59fucrhz59rxpqnwgy8y6spxxvq4wcj2"
+        value="bc1qz6lfs0r206396a9psunmkfpqh7sdf2zh3e7tnf"
       />
     </Alert>
   );
