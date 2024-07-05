@@ -20,7 +20,7 @@ RUN npm run build
 RUN npm install -g serve
 
 # Expose the specified port
-EXPOSE ${PORT}
+EXPOSE 3000
 
 # Serve
-CMD ["sh", "serve -s dist -l tcp://0.0.0.0:$PORT"]
+CMD ["sh", "serve -s dist -l tcp://0.0.0.0:3000"]
