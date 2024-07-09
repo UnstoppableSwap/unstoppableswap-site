@@ -57,8 +57,8 @@ function CCSAlert() {
   return (
     <Alert severity="info">
       <AlertTitle>Crowdfunding Proposal</AlertTitle>
-      We are seeking funding from the community (CCS) to continue development of the
-      XMR&lt;&gt;BTC atomic swaps ecosystem. Please consider leaving your
+      We are seeking funding from the community (CCS) to continue development of
+      the XMR&lt;&gt;BTC atomic swaps ecosystem. Please consider leaving your
       support/feedback.
       <br />
       <Link

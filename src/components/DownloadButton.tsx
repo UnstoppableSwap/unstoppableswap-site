@@ -1,7 +1,7 @@
 import {
   Box,
   Button,
-  Fab,
+  IconButton,
   Link,
   makeStyles,
   MenuItem,
@@ -55,14 +55,9 @@ function ViewCodeButton() {
 
   return (
     <a target="_blank" href={GITHUB_URL} className={classes.githubButtonOuter}>
-      <Button
-        variant="outlined"
-        color="default"
-        endIcon={<GitHubIcon />}
-        size="large"
-      >
-        View Code
-      </Button>
+      <IconButton variant="outlined" color="default" size="medium">
+        <GitHubIcon />
+      </IconButton>
     </a>
   );
 }
