@@ -56,9 +56,9 @@ let theme = createMuiTheme({
 function CCSAlert() {
   return (
     <Alert severity="info">
-      <AlertTitle>CCS Proposal</AlertTitle>
-      We are seeking funding from the community to continue development on
-      XMR&lt;&gt;BTC atomic swaps. Please consider leaving your
+      <AlertTitle>Crowdfunding Proposal</AlertTitle>
+      We are seeking funding from the community (CCS) to continue development of the
+      XMR&lt;&gt;BTC atomic swaps ecosystem. Please consider leaving your
       support/feedback.
       <br />
       <Link
