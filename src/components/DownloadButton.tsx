@@ -55,7 +55,7 @@ function ViewCodeButton() {
 
   return (
     <a target="_blank" href={GITHUB_URL} className={classes.githubButtonOuter}>
-      <IconButton variant="outlined" color="default" size="medium">
+      <IconButton color="default" size="medium">
         <GitHubIcon />
       </IconButton>
     </a>
