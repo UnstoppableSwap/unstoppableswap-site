@@ -87,8 +87,8 @@ function Content() {
   if (!isMobile) {
     return (
       <Box className={classes.content}>
-        <CCSAlert />
         <Box className={classes.content}>
+          <CCSAlert />
           <Box
             style={{
               display: "flex",
