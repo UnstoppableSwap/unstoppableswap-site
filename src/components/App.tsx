@@ -1,4 +1,10 @@
-import { Box, makeStyles, CssBaseline, useMediaQuery } from "@material-ui/core";
+import {
+  Box,
+  makeStyles,
+  CssBaseline,
+  useMediaQuery,
+  Link,
+} from "@material-ui/core";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import FaqSection from "./sections/FaqSection";
 import indigo from "@material-ui/core/colors/indigo";
@@ -9,6 +15,7 @@ import DownloadButton from "./DownloadButton";
 import ScreenshotSlideshow from "./ScreenshotSlideshow";
 import AlertsSection from "./sections/AlertsSection";
 import ProviderTable from "./ProviderTable";
+import { Alert, AlertTitle } from "@material-ui/lab";
 
 const useStyles = makeStyles((theme) => ({
   main: {
@@ -46,6 +53,33 @@ let theme = createMuiTheme({
   },
 });
 
+function CCSAlert() {
+  return (
+    <Alert severity="info">
+      <AlertTitle>CCS Proposal</AlertTitle>
+      We are seeking funding from the community to continue development on
+      XMR&lt;&gt;BTC atomic swaps. Please consider leaving your
+      support/feedback.
+      <br />
+      <Link
+        href="https://unstoppableswap.net/ccs"
+        target="_blank"
+        rel="noopener"
+      >
+        CCS Proposal
+      </Link>
+      <br />
+      <Link
+        href="https://unstoppableswap.net/ccs-reddit"
+        target="_blank"
+        rel="noopener"
+      >
+        CCS Proposal (Reddit Disussion)
+      </Link>
+    </Alert>
+  );
+}
+
 function Content() {
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const classes = useStyles();
@@ -53,6 +87,7 @@ function Content() {
   if (!isMobile) {
     return (
       <Box className={classes.content}>
+        <CCSAlert />
         <Box className={classes.content}>
           <Box
             style={{
@@ -85,6 +120,7 @@ function Content() {
   } else {
     return (
       <Box className={classes.content}>
+        <CCSAlert />
         <MarketingPhraseHeadline />
         <Box
           display="flex"

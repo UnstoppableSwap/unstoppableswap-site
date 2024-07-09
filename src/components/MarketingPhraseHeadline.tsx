@@ -65,9 +65,8 @@ export function MarketingPhraseHeadline() {
         }}
       >
         using Atomic Swaps through UnstoppableSwap's open-source desktop
-        software.
-        No registration required. No middleman and completely anonymous
-        over the Tor network.
+        software. No registration required. No middleman and completely
+        anonymous over the Tor network.
       </Typography>
     </Box>
   );

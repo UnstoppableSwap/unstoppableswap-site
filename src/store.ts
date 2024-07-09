@@ -13,7 +13,7 @@ export interface Provider {
 }
 
 const useStore = create((set) => ({
-  providerList: null as (Provider[] | null),
+  providerList: null as Provider[] | null,
   setProviderList: (list: Provider[]) => {
     const sortedList = list.sort((a, b) => {
       if (a.testnet && !b.testnet) return 1;

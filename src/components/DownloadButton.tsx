@@ -85,7 +85,7 @@ export default function DownloadButton() {
 
   useEffect(() => {
     setDownloadLink(
-      DOWNLOAD_LINKS[os as "mac" | "linux" | "win"] || DOWNLOAD_LINKS.win
+      DOWNLOAD_LINKS[os as "mac" | "linux" | "win"] || DOWNLOAD_LINKS.win,
     );
   }, [os]);
 
