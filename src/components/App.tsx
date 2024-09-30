@@ -1,21 +1,21 @@
 import {
   Box,
-  makeStyles,
   CssBaseline,
-  useMediaQuery,
   Link,
+  makeStyles,
+  useMediaQuery,
 } from "@material-ui/core";
-import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
-import FaqSection from "./sections/FaqSection";
 import indigo from "@material-ui/core/colors/indigo";
-import Footer from "./Footer";
-import FeaturesSection from "./sections/FeaturesSection";
-import MarketingPhraseHeadline from "./MarketingPhraseHeadline";
+import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+import { Alert, AlertTitle } from "@material-ui/lab";
 import DownloadButton from "./DownloadButton";
+import Footer from "./Footer";
+import LiquidityInfo from "./LiquidityInfo";
+import MarketingPhraseHeadline from "./MarketingPhraseHeadline";
+import ProviderTable from "./ProviderTable";
 import ScreenshotSlideshow from "./ScreenshotSlideshow";
 import AlertsSection from "./sections/AlertsSection";
-import ProviderTable from "./ProviderTable";
-import { Alert, AlertTitle } from "@material-ui/lab";
+import FeaturesSection from "./sections/FeaturesSection";
 
 const useStyles = makeStyles((theme) => ({
   main: {
@@ -110,9 +110,9 @@ function Content() {
           </Box>
           <FeaturesSection />
           <Box className={classes.faqAlertSection}>
+            <LiquidityInfo />
             <ProviderTable />
             <AlertsSection />
-            <FaqSection />
           </Box>
         </Box>
       </Box>
@@ -133,9 +133,9 @@ function Content() {
         </Box>
         <FeaturesSection />
         <Box className={classes.faqAlertSection}>
+          <LiquidityInfo />
           <ProviderTable />
           <AlertsSection />
-          <FaqSection />
         </Box>
       </Box>
     );
