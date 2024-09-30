@@ -1,5 +1,5 @@
 import { Box, makeStyles, Typography } from "@material-ui/core";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const WORD_CHANGE_INTERVAL_SECS = 3;
 
@@ -37,13 +37,6 @@ export function MarketingPhraseHeadline() {
     "peer-to-peer",
   ];
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setIndex((i) => (i + 1) % strings.length);
-    }, WORD_CHANGE_INTERVAL_SECS * 1000);
-    return () => clearInterval(interval);
-  }, [strings.length]);
-
   return (
     <Box className={classes.outer}>
       <Typography variant="h3" display="inline" className={classes.headline}>
@@ -52,6 +45,9 @@ export function MarketingPhraseHeadline() {
           variant="inherit"
           color="primary"
           className={classes.fadeInOut}
+          onAnimationIteration={() => {
+            setIndex((i) => (i + 1) % strings.length);
+          }}
         >
           {" " + strings[index]}
         </Typography>
