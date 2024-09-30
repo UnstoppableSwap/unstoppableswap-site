@@ -1,5 +1,4 @@
 import {
-  Box,
   Divider,
   makeStyles,
   Paper,
@@ -7,6 +6,7 @@ import {
   useMediaQuery,
   useTheme,
 } from "@material-ui/core";
+import { Box } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import useStore from "../store";
 import LiquidityGraph from "./LiqudityGraph";
@@ -18,13 +18,12 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    padding: theme.spacing(2, 0),
+    padding: theme.spacing(2),
   },
   paper: {
-    padding: theme.spacing(3),
     display: "flex",
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "space-evenly",
     maxWidth: "100%",
     overflowX: "auto",
     width: "100%",
@@ -37,14 +36,13 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    padding: theme.spacing(2),
     minWidth: 120,
   },
   infoItemVertical: {
     width: "100%",
   },
   divider: {
-    height: 50,
+    height: 100,
     margin: theme.spacing(0, 2),
   },
   dividerHorizontal: {
@@ -84,10 +82,9 @@ export default function LiquidityInfo() {
   ];
 
   return (
-    <Box className={classes.root}>
-      <Paper
+    <Paper className={classes.root} elevation={3}>
+      <Box
         className={`${classes.paper} ${isNarrowScreen ? classes.paperVertical : ""}`}
-        elevation={3}
       >
         {infoItems.map(([label, amount], index) => (
           <React.Fragment key={index}>
@@ -113,8 +110,8 @@ export default function LiquidityInfo() {
             </div>
           </React.Fragment>
         ))}
-      </Paper>
+      </Box>
       <LiquidityGraph />
-    </Box>
+    </Paper>
   );
 }
