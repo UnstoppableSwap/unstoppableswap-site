@@ -1,8 +1,8 @@
 import { Box, makeStyles, Typography } from "@material-ui/core";
-import AnonymousIcon from "../icons/AnonymousIcon";
 import GitHubIcon from "@material-ui/icons/GitHub";
-import DecentralizedIcon from "../icons/DecentralizedIcon";
+import PeopleIcon from "@material-ui/icons/People";
 import CryptographyIcon from "../icons/CryptographyIcon";
+import DecentralizedIcon from "../icons/DecentralizedIcon";
 
 const useStyles = makeStyles((theme) => ({
   outer: {
@@ -57,11 +57,10 @@ export default function FeaturesSection() {
 
   let content: { title: string; description: string; icon: JSX.Element }[] = [
     {
-      title: "Private",
+      title: "Accessible",
       description:
-        "No email, no phone number, no nothing. All connections are end-to-end encrypted and sent over the Tor network.",
-      // @ts-ignore
-      icon: <AnonymousIcon />,
+        "Empowering everyone. Regardless of background or location, you have equal access to participate.",
+      icon: <PeopleIcon />,
     },
     {
       title: "Trustless",
@@ -72,7 +71,7 @@ export default function FeaturesSection() {
     {
       title: "Safe",
       description:
-        "UnstoppableSwap never holds your funds. You are always in sole possesion of the crypographic keys required to spend your coins.",
+        "We never hold your funds. You are always in sole possesion of the crypographic keys required to spend your coins.",
       icon: <CryptographyIcon />,
     },
     {

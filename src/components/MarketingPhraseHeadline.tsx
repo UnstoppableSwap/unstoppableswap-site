@@ -1,5 +1,5 @@
+import { Box, makeStyles, Typography } from "@material-ui/core";
 import { useEffect, useState } from "react";
-import { Typography, makeStyles, Box } from "@material-ui/core";
 
 const WORD_CHANGE_INTERVAL_SECS = 3;
 
@@ -30,7 +30,6 @@ export function MarketingPhraseHeadline() {
 
   const strings = [
     "trustlessly",
-    "anonymously",
     "securely",
     "without risk",
     "freely",
@@ -65,8 +64,8 @@ export function MarketingPhraseHeadline() {
         }}
       >
         using Atomic Swaps through UnstoppableSwap's open-source desktop
-        software. No registration required. No middleman and completely
-        anonymous over the Tor network.
+        software. No registration required. No middleman. Over the Tor network.
+        Accessible to everyone.
       </Typography>
     </Box>
   );
