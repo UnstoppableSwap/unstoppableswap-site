@@ -9,13 +9,13 @@ import {
   Typography,
 } from "@material-ui/core";
 import GetAppIcon from "@material-ui/icons/GetApp";
-import AppleIcon from "./icons/AppleIcon";
-import WindowsIcon from "./icons/WindowsIcon";
-import LinuxIcon from "./icons/LinuxIcon";
-import { useEffect, useState } from "react";
 import GitHubIcon from "@material-ui/icons/GitHub";
+import { useEffect, useState } from "react";
+import AppleIcon from "./icons/AppleIcon";
+import LinuxIcon from "./icons/LinuxIcon";
+import WindowsIcon from "./icons/WindowsIcon";
 
-const VERSION = "0.6.3";
+const VERSION = "0.6.4";
 export const GITHUB_URL =
   "https://github.com/UnstoppableSwap/unstoppableswap-gui";
 const ALL_DOWNLOADS = `${GITHUB_URL}/releases/tag/v${VERSION}`;
