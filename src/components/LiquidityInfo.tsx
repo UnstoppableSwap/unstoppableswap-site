@@ -43,11 +43,11 @@ const useStyles = makeStyles((theme) => ({
   },
   divider: {
     height: 100,
-    margin: theme.spacing(0, 2),
+    //   margin: theme.spacing(0, 2),
   },
   dividerHorizontal: {
     width: "100%",
-    margin: theme.spacing(2, 0),
+    //   margin: theme.spacing(2, 0),
   },
 }));
 
@@ -111,6 +111,7 @@ export default function LiquidityInfo() {
           </React.Fragment>
         ))}
       </Box>
+      <Divider className={classes.dividerHorizontal} />
       <LiquidityGraph />
     </Paper>
   );

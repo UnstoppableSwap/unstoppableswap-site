@@ -1,5 +1,7 @@
 import { Tooltip } from "@material-ui/core";
+import { ReactNode } from "react";
 import { piconerosToXmr, satsToBtc } from "../utils";
+import BitcoinIcon from "./icons/BitcoinIcon";
 
 type Amount = number | null | undefined;
 
@@ -10,7 +12,7 @@ export function AmountWithUnit({
   dollarRate,
 }: {
   amount: Amount;
-  unit: string;
+  unit: ReactNode;
   fixedPrecision: number;
   dollarRate?: Amount;
 }) {
@@ -23,7 +25,7 @@ export function AmountWithUnit({
           : ""
       }
     >
-      <span>
+      <span style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
         {amount != null
           ? Number.parseFloat(amount.toFixed(fixedPrecision))
           : "?"}{" "}
@@ -38,7 +40,9 @@ AmountWithUnit.defaultProps = {
 };
 
 export function BitcoinAmount({ amount }: { amount: Amount }) {
-  return <AmountWithUnit amount={amount} unit="BTC" fixedPrecision={4} />;
+  return (
+    <AmountWithUnit amount={amount} unit={<BitcoinIcon />} fixedPrecision={4} />
+  );
 }
 
 export function MoneroAmount({ amount }: { amount: Amount }) {
