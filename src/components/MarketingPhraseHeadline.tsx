@@ -59,9 +59,9 @@ export function MarketingPhraseHeadline() {
           opacity: 0.7,
         }}
       >
-        using Atomic Swaps through UnstoppableSwap's open-source desktop
-        software. No registration required. No middleman. Over the Tor network.
-        Accessible to everyone.
+        using Atomic Swaps with our desktop software. No registration required.
+        No middleman. Over the Tor network. Accessible to everyone. Community
+        funded.
       </Typography>
     </Box>
   );
