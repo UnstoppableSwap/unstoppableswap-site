@@ -40,6 +40,7 @@ const useStyles = makeStyles((theme) => ({
   },
   infoItemVertical: {
     width: "100%",
+    padding: theme.spacing(1, 0),
   },
   divider: {
     height: 100,
