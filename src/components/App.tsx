@@ -5,7 +5,6 @@ import DownloadButton from "./DownloadButton";
 import Footer from "./Footer";
 import LiquidityInfo from "./LiquidityInfo";
 import MarketingPhraseHeadline from "./MarketingPhraseHeadline";
-import ProviderTable from "./ProviderTable";
 import ScreenshotSlideshow from "./ScreenshotSlideshow";
 import AlertsSection from "./sections/AlertsSection";
 import FeaturesSection from "./sections/FeaturesSection";
@@ -76,7 +75,6 @@ function Content() {
           <FeaturesSection />
           <Box className={classes.faqAlertSection}>
             <LiquidityInfo />
-            <ProviderTable />
             <AlertsSection />
           </Box>
         </Box>
@@ -98,7 +96,6 @@ function Content() {
         <FeaturesSection />
         <Box className={classes.faqAlertSection}>
           <LiquidityInfo />
-          <ProviderTable />
           <AlertsSection />
         </Box>
       </Box>
