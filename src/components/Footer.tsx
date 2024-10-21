@@ -1,9 +1,10 @@
-import { Box, Icon, makeStyles } from "@material-ui/core";
-import GitHubIcon from "@material-ui/icons/GitHub";
-import IconButton from "@material-ui/core/IconButton";
+import { Box, Icon } from "@mui/material";
+import makeStyles from '@mui/styles/makeStyles';
+import GitHubIcon from "@mui/icons-material/GitHub";
+import IconButton from "@mui/material/IconButton";
 import { GITHUB_URL } from "./DownloadDialog";
-import TwitterIcon from "@material-ui/icons/Twitter";
-import YouTubeIcon from "@material-ui/icons/YouTube";
+import TwitterIcon from "@mui/icons-material/Twitter";
+import YouTubeIcon from "@mui/icons-material/YouTube";
 import DiscordIcon from "./icons/DiscordIcon";
 
 const TWITTER_URL = "https://twitter.com/UnstoppableSwap";
@@ -32,15 +33,15 @@ export const Footer = () => {
   ];
 
   return (
-    <Box className={classes.root}>
+    (<Box className={classes.root}>
       {links.map(([icon, link], i) => {
         return (
-          <IconButton key={i} onClick={() => window.open(link, "_blank")}>
+          (<IconButton key={i} onClick={() => window.open(link, "_blank")} size="large">
             {icon}
-          </IconButton>
+          </IconButton>)
         );
       })}
-    </Box>
+    </Box>)
   );
 };
 

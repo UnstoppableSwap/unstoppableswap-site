@@ -1,6 +1,5 @@
 import {
   Box,
-  makeStyles,
   Paper,
   Table,
   TableBody,
@@ -8,7 +7,8 @@ import {
   TableContainer,
   TableHead,
   TableRow,
-} from "@material-ui/core";
+} from "@mui/material";
+import makeStyles from '@mui/styles/makeStyles';
 import { Light as SyntaxHighlighter } from "react-syntax-highlighter";
 import js from "react-syntax-highlighter/dist/esm/languages/hljs/javascript";
 import a11yDark from "react-syntax-highlighter/dist/esm/styles/hljs/a11y-dark";

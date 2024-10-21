@@ -1,15 +1,7 @@
-import {
-  Box,
-  Button,
-  IconButton,
-  Link,
-  makeStyles,
-  MenuItem,
-  Select,
-  Typography,
-} from "@material-ui/core";
-import GetAppIcon from "@material-ui/icons/GetApp";
-import GitHubIcon from "@material-ui/icons/GitHub";
+import { Box, Button, IconButton, Link, MenuItem, Select, Typography } from "@mui/material";
+import makeStyles from '@mui/styles/makeStyles';
+import GetAppIcon from "@mui/icons-material/GetApp";
+import GitHubIcon from "@mui/icons-material/GitHub";
 import { useEffect, useState } from "react";
 import AppleIcon from "./icons/AppleIcon";
 import LinuxIcon from "./icons/LinuxIcon";
@@ -85,7 +77,7 @@ export default function DownloadButton() {
   }, [os]);
 
   return (
-    <Box className={classes.outer}>
+    (<Box className={classes.outer}>
       <Box className={classes.upperBox}>
         <a href={downloadLink} className={classes.downloadButtonOuter}>
           <Button
@@ -116,11 +108,15 @@ export default function DownloadButton() {
         </Select>
       </Box>
       <Typography variant="caption" color="textSecondary">
-        <Link target="_blank" href={ALL_DOWNLOADS} color="textSecondary">
+        <Link
+          target="_blank"
+          href={ALL_DOWNLOADS}
+          color="textSecondary"
+          underline="hover">
           All downloads
         </Link>{" "}
         | v{VERSION} | Current version
       </Typography>
-    </Box>
+    </Box>)
   );
 }

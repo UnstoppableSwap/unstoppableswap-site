@@ -5,8 +5,9 @@ import Page4Screenshot from "../page_4_gui.png";
 import Page5Screenshot from "../page_5_gui.png";
 import Page7Screenshot from "../page_7_gui.png";
 
-import { Box, makeStyles } from "@material-ui/core";
-import { Pagination } from "@material-ui/lab";
+import { Box } from "@mui/material";
+import makeStyles from '@mui/styles/makeStyles';
+import { Pagination } from '@mui/material';
 import { useEffect, useState } from "react";
 
 const useStyles = makeStyles((theme) => ({

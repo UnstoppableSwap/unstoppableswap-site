@@ -1,13 +1,6 @@
-import {
-  Accordion,
-  AccordionSummary,
-  AccordionDetails,
-  Typography,
-  Box,
-  makeStyles,
-  TextField,
-} from "@material-ui/core";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import { Accordion, AccordionSummary, AccordionDetails, Typography, Box, TextField } from "@mui/material";
+import makeStyles from '@mui/styles/makeStyles';
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import APITable from "../APITable";
 
 const useStyles = makeStyles((theme) => ({
@@ -81,9 +74,9 @@ const questionsAndAnswers = [
         operations by directly donating to:
         <br />
         <TextField
+          variant="standard"
           fullWidth
-          value="87jS4C7ngk9EHdqFFuxGFgg8AyH63dRUoULshWDybFJaP75UA89qsutG5B1L1QTc4w228nsqsv8EjhL7bz8fB3611Mh98mg"
-        />
+          value="87jS4C7ngk9EHdqFFuxGFgg8AyH63dRUoULshWDybFJaP75UA89qsutG5B1L1QTc4w228nsqsv8EjhL7bz8fB3611Mh98mg" />
       </>
     ),
   },
