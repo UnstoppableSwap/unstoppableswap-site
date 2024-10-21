@@ -5,7 +5,7 @@ import {
   DialogTitle,
   DialogActions,
   Button,
-} from "@material-ui/core";
+} from "@mui/material";
 
 export const GITHUB_URL =
   "https://github.com/UnstoppableSwap/unstoppableswap-gui";

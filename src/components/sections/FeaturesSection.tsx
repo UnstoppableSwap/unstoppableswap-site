@@ -1,6 +1,7 @@
-import { Box, makeStyles, Typography } from "@material-ui/core";
-import GitHubIcon from "@material-ui/icons/GitHub";
-import PeopleIcon from "@material-ui/icons/People";
+import { Box, Typography } from "@mui/material";
+import makeStyles from '@mui/styles/makeStyles';
+import GitHubIcon from "@mui/icons-material/GitHub";
+import PeopleIcon from "@mui/icons-material/People";
 import CryptographyIcon from "../icons/CryptographyIcon";
 import DecentralizedIcon from "../icons/DecentralizedIcon";
 
@@ -42,13 +43,13 @@ function FeatureItem({
   // Description at the bottom
   // Use Typography Element for title and description
   return (
-    <Box className={classes.featureItemOuter}>
-      <Box display="flex" alignItems="center" gridGap="10px">
+    (<Box className={classes.featureItemOuter}>
+      <Box display="flex" alignItems="center" gap="10px">
         <Typography variant="h5">{title}</Typography>
         {icon}
       </Box>
       <Typography variant="subtitle2">{description}</Typography>
-    </Box>
+    </Box>)
   );
 }
 

@@ -1,4 +1,4 @@
-import { Tooltip } from "@material-ui/core";
+import { Tooltip } from "@mui/material";
 import { ReactNode } from "react";
 import { piconerosToXmr, satsToBtc } from "../utils";
 import BitcoinIcon from "./icons/BitcoinIcon";

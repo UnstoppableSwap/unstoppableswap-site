@@ -1,11 +1,5 @@
-import {
-  Divider,
-  makeStyles,
-  Paper,
-  Typography,
-  useMediaQuery,
-  useTheme,
-} from "@material-ui/core";
+import { Divider, Paper, Typography, useMediaQuery, useTheme } from "@mui/material";
+import makeStyles from '@mui/styles/makeStyles';
 import { Box } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import useStore from "../store";
@@ -44,18 +38,16 @@ const useStyles = makeStyles((theme) => ({
   },
   divider: {
     height: 100,
-    //   margin: theme.spacing(0, 2),
   },
   dividerHorizontal: {
     width: "100%",
-    //   margin: theme.spacing(2, 0),
   },
 }));
 
 export default function LiquidityInfo() {
   const classes = useStyles();
   const theme = useTheme();
-  const isNarrowScreen = useMediaQuery(theme.breakpoints.down("sm"));
+  const isNarrowScreen = useMediaQuery(theme.breakpoints.down('md'));
 
   const providers = useStore(
     (state) =>

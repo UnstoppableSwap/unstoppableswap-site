@@ -1,5 +1,5 @@
-import { Alert, AlertTitle } from "@material-ui/lab";
-import { TextField } from "@material-ui/core";
+import { Alert, AlertTitle } from '@mui/material';
+import { TextField } from "@mui/material";
 
 export default function BetaAlert() {
   return (

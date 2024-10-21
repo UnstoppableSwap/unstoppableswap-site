@@ -1,6 +1,7 @@
 import MarketingPhraseHeadline from "../MarketingPhraseHeadline";
 import ScreenshotSlideshow from "../ScreenshotSlideshow";
-import { Box, Dialog, makeStyles } from "@material-ui/core";
+import { Box, Dialog } from "@mui/material";
+import makeStyles from '@mui/styles/makeStyles';
 import DownloadButton from "../DownloadButton";
 
 const useStyles = makeStyles((theme) => ({

@@ -9,14 +9,14 @@ import {
   Switch,
   FormControlLabel,
   Box,
-  makeStyles,
   CircularProgress,
   LinearProgress,
   TableBody,
   Typography,
-} from "@material-ui/core";
-import IconButton from "@material-ui/core/IconButton";
-import CopyIcon from "@material-ui/icons/FileCopy";
+} from "@mui/material";
+import makeStyles from '@mui/styles/makeStyles';
+import IconButton from "@mui/material/IconButton";
+import CopyIcon from "@mui/icons-material/FileCopy";
 import { useState } from "react";
 import clipboard from "clipboardy";
 
@@ -33,13 +33,13 @@ function getCombinedMultiAddr(provider: {
 
 function ProviderCopyButton(provider: { multiAddr: string; peerId: string }) {
   return (
-    <IconButton
+    (<IconButton
       onClick={() => {
         clipboard.write(getCombinedMultiAddr(provider));
       }}
-    >
+      size="large">
       <CopyIcon />
-    </IconButton>
+    </IconButton>)
   );
 }
 
