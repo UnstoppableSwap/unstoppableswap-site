@@ -15,14 +15,19 @@ import AppleIcon from "./icons/AppleIcon";
 import LinuxIcon from "./icons/LinuxIcon";
 import WindowsIcon from "./icons/WindowsIcon";
 
-const VERSION = "0.6.4";
+const VERSION = "1.0.0-rc.1";
 export const GITHUB_URL =
-  "https://github.com/UnstoppableSwap/unstoppableswap-gui";
+  "https://github.com/UnstoppableSwap/core";
 const ALL_DOWNLOADS = `${GITHUB_URL}/releases/tag/v${VERSION}`;
 const DOWNLOAD_LINKS = {
-  win: `https://github.com/UnstoppableSwap/unstoppableswap-gui/releases/download/v${VERSION}/UnstoppableSwap-Setup-${VERSION}.exe`,
-  mac: `https://github.com/UnstoppableSwap/unstoppableswap-gui/releases/download/v${VERSION}/UnstoppableSwap-${VERSION}.dmg`,
-  linux: `https://github.com/UnstoppableSwap/unstoppableswap-gui/releases/download/v${VERSION}/UnstoppableSwap-${VERSION}.AppImage`,
+  // https://github.com/UnstoppableSwap/core/releases/download/1.0.0-alpha.3/UnstoppableSwap_1.0.0-alpha.3_x64-setup.exe
+  win: `https://github.com/UnstoppableSwap/core/releases/download/${VERSION}/UnstoppableSwap_${VERSION}_x64-setup.exe`,
+  // https://github.com/UnstoppableSwap/core/releases/download/1.0.0-alpha.3/UnstoppableSwap_1.0.0-alpha.3_x64.dmg
+  mac: `https://github.com/UnstoppableSwap/core/releases/download/${VERSION}/UnstoppableSwap_${VERSION}_x64.dmg`,
+  // https://github.com/UnstoppableSwap/core/releases/download/1.0.0-alpha.3/UnstoppableSwap_1.0.0-alpha.3_amd64.AppImage
+  linux: `https://github.com/UnstoppableSwap/core/releases/download/${VERSION}/UnstoppableSwap_${VERSION}_amd64.AppImage`,
+  // https://github.com/UnstoppableSwap/core/releases/download/1.0.0-alpha.3/UnstoppableSwap_1.0.0-alpha.3_aarch64.dmg
+  mac_arm: `https://github.com/UnstoppableSwap/core/releases/download/${VERSION}/UnstoppableSwap_${VERSION}_aarch64.dmg`,
 };
 
 const useStyles = makeStyles((theme) => ({
@@ -69,8 +74,15 @@ export default function DownloadButton() {
 
   useEffect(() => {
     const platform = window.navigator.platform;
+    const userAgent = window.navigator.userAgent.toLowerCase();
+
     if (platform.includes("Mac")) {
-      setOs("mac");
+      // Check for Apple Silicon Macs
+      if (userAgent.includes("mac") && userAgent.includes("arm64")) {
+        setOs("mac_arm");
+      } else {
+        setOs("mac");
+      }
     } else if (platform.includes("Win")) {
       setOs("win");
     } else {
@@ -80,7 +92,7 @@ export default function DownloadButton() {
 
   useEffect(() => {
     setDownloadLink(
-      DOWNLOAD_LINKS[os as "mac" | "linux" | "win"] || DOWNLOAD_LINKS.win,
+      DOWNLOAD_LINKS[os as "mac" | "mac_arm" | "linux" | "win"] || DOWNLOAD_LINKS.win
     );
   }, [os]);
 
@@ -104,15 +116,20 @@ export default function DownloadButton() {
           value={os}
           onChange={(event) => setOs(event.target.value as string)}
         >
-          <MenuItem value={"linux"}>
-            <LinuxIcon />
-          </MenuItem>
-          <MenuItem value={"mac"}>
-            <AppleIcon />
-          </MenuItem>
-          <MenuItem value={"win"}>
-            <WindowsIcon />
-          </MenuItem>
+          {[
+            { value: "linux", icon: <LinuxIcon />, label: "AppImage" },
+            { value: "mac", icon: <AppleIcon />, label: "Intel" },
+            { value: "mac_arm", icon: <AppleIcon />, label: "Silicon" },
+            { value: "win", icon: <WindowsIcon />, label: "x64" }
+          ].map(item => (
+            <MenuItem
+              key={item.value}
+              value={item.value}
+              style={{ display: 'flex', gap: "0.5rem", alignItems: 'center' }}
+            >
+              {item.icon}{item.label}
+            </MenuItem>
+          ))}
         </Select>
       </Box>
       <Typography variant="caption" color="textSecondary">
