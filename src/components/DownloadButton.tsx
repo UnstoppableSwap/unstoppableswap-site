@@ -15,7 +15,7 @@ import AppleIcon from "./icons/AppleIcon";
 import LinuxIcon from "./icons/LinuxIcon";
 import WindowsIcon from "./icons/WindowsIcon";
 
-const VERSION = "1.0.0-rc.1";
+const VERSION = "1.0.0-rc.4";
 export const GITHUB_URL =
   "https://github.com/UnstoppableSwap/core";
 const ALL_DOWNLOADS = `${GITHUB_URL}/releases/tag/v${VERSION}`;
