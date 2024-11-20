@@ -1,6 +1,7 @@
 import { BarChart } from "@mui/x-charts/BarChart";
 import React, { useEffect, useState } from "react";
 import { satsToBtc } from "../utils";
+import { Divider } from "@material-ui/core";
 
 interface DataPoint {
   date: string;
@@ -35,37 +36,40 @@ export function LiquidityGraph() {
   }, []);
 
   return data.length > 0 ? (
-    <BarChart
-      xAxis={[
-        {
-          data: data.map((item) => item.date),
-          scaleType: "band",
-          tickLabelStyle: { fill: "white" }, // X-axis text color
-        },
-      ]}
-      yAxis={[
-        {
-          label: "Total liquidity (BTC)",
-          labelStyle: { fill: "white" }, // Y-axis label color
-          fill: "white",
-        },
-      ]}
-      series={[
-        {
-          data: data.map((item) => satsToBtc(item.liquidity)),
-          color: "#f4511e",
-        },
-      ]}
-      height={300}
-      tooltip={{
-        trigger: "none",
-      }}
-      sx={{
-        "& .MuiChartsLegend-label": {
-          fill: "white", // Legend text color
-        },
-      }}
-    />
+    <>
+      <Divider style={{ width: "100%" }} />
+      <BarChart
+        xAxis={[
+          {
+            data: data.map((item) => item.date),
+            scaleType: "band",
+            tickLabelStyle: { fill: "white" }, // X-axis text color
+          },
+        ]}
+        yAxis={[
+          {
+            label: "Total liquidity (BTC)",
+            labelStyle: { fill: "white" }, // Y-axis label color
+            fill: "white",
+          },
+        ]}
+        series={[
+          {
+            data: data.map((item) => satsToBtc(item.liquidity)),
+            color: "#f4511e",
+          },
+        ]}
+        height={300}
+        tooltip={{
+          trigger: "none",
+        }}
+        sx={{
+          "& .MuiChartsLegend-label": {
+            fill: "white", // Legend text color
+          },
+        }}
+      />
+    </>
   ) : null;
 }
 

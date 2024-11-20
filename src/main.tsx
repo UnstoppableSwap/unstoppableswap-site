@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./components/App";
-import { setupSocket } from "./socket";
+import { setupPeriodicAPIFetch } from "./api";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -11,4 +11,4 @@ ReactDOM.render(
   document.getElementById("root"),
 );
 
-setupSocket();
+setupPeriodicAPIFetch();
