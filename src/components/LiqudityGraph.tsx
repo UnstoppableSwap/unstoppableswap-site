@@ -372,7 +372,12 @@ export function LiquidityGraph() {
       <BarChart
         xAxis={[
           {
-            data: STATIC_STATS.map((item) => item[0]),
+            data: STATIC_STATS.map((item) =>
+              new Date(item[0]).toLocaleDateString(undefined, {
+                month: "short",
+                day: "numeric",
+              }),
+            ),
             scaleType: "band",
             tickLabelStyle: { fill: "white" }, // X-axis text color
           },
