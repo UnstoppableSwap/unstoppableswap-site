@@ -59,7 +59,7 @@ export function MarketingPhraseHeadline() {
           opacity: 0.7,
         }}
       >
-        powered by atomic swaps. Zero trust required. No
+        Powered by atomic swaps. Zero trust required. No
         middlemen. Pure peer-to-peer exchange through the Tor network. Complete
         privacy. Built by the community, for everyone (
         <a
