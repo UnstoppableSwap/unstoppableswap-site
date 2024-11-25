@@ -1,4 +1,4 @@
-import { Box, makeStyles, Typography } from "@material-ui/core";
+import { Box, Link, makeStyles, Typography } from "@material-ui/core";
 import { useState } from "react";
 
 const WORD_CHANGE_INTERVAL_SECS = 3;
@@ -59,9 +59,20 @@ export function MarketingPhraseHeadline() {
           opacity: 0.7,
         }}
       >
-        using Atomic Swaps with our desktop software. No registration required.
-        No middleman. Over the Tor network. Accessible to everyone. Community
-        funded.
+        powered by atomic swaps. Zero trust required. No
+        middlemen. Pure peer-to-peer exchange through the Tor network. Complete
+        privacy. Built by the community, for everyone (
+        <a
+          href="https://arxiv.org/pdf/2101.12332"
+          style={{ color: "white", textDecoration: "underline" }}
+          target="_blank"
+          rel="noreferrer"
+        >
+          <Typography variant="inherit" display="inline">
+            Read the whitepaper
+
+          </Typography>
+        </a>)
       </Typography>
     </Box>
   );

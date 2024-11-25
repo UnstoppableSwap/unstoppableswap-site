@@ -1,6 +1,6 @@
 import { Box, CssBaseline, makeStyles, useMediaQuery } from "@material-ui/core";
 import indigo from "@material-ui/core/colors/indigo";
-import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+import { createMuiTheme, createTheme, ThemeProvider } from "@material-ui/core/styles";
 import DownloadButton from "./DownloadButton";
 import Footer from "./Footer";
 import LiquidityInfo from "./LiquidityInfo";
@@ -35,13 +35,45 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-let theme = createMuiTheme({
+const darkTheme = createTheme({
   palette: {
     type: "dark",
+    primary: {
+      main: "#f4511e", // Monero orange
+    },
+    secondary: indigo,
+  },
+  typography: {
+    overline: {
+      textTransform: "none", // This prevents the text from being all caps
+      fontFamily: "monospace"
+    },
+  },
+});
+
+const lightTheme = createTheme({
+  ...darkTheme,
+  palette: {
+    type: "light",
+    primary: {
+      main: "#f4511e", // Monero orange
+    },
+    secondary: indigo,
+  },
+});
+
+const theme = createTheme({
+  ...darkTheme,
+  palette: {
+    type: 'dark',
     primary: {
       main: "#f4511e",
     },
     secondary: indigo,
+    background: {
+      default: "#080808",
+      paper: "#181818",
+    },
   },
 });
 
