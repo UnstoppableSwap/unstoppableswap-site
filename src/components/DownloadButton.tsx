@@ -15,7 +15,7 @@ import AppleIcon from "./icons/AppleIcon";
 import LinuxIcon from "./icons/LinuxIcon";
 import WindowsIcon from "./icons/WindowsIcon";
 
-const VERSION = "1.0.0-rc.10";
+const VERSION = "1.0.0-rc.11"; // TODO: fetch from Github API?
 export const GITHUB_URL = "https://github.com/UnstoppableSwap/core";
 const ALL_DOWNLOADS = `${GITHUB_URL}/releases/tag/v${VERSION}`;
 const DOWNLOAD_LINKS = {
