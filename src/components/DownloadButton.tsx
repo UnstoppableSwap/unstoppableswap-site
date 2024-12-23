@@ -15,17 +15,18 @@ import AppleIcon from "./icons/AppleIcon";
 import LinuxIcon from "./icons/LinuxIcon";
 import WindowsIcon from "./icons/WindowsIcon";
 
-const VERSION = "1.0.0-rc.6";
-export const GITHUB_URL =
-  "https://github.com/UnstoppableSwap/core";
+const VERSION = "1.0.0-rc.11"; // TODO: fetch from Github API?
+export const GITHUB_URL = "https://github.com/UnstoppableSwap/core";
 const ALL_DOWNLOADS = `${GITHUB_URL}/releases/tag/v${VERSION}`;
 const DOWNLOAD_LINKS = {
   // https://github.com/UnstoppableSwap/core/releases/download/1.0.0-alpha.3/UnstoppableSwap_1.0.0-alpha.3_x64-setup.exe
   win: `https://github.com/UnstoppableSwap/core/releases/download/${VERSION}/UnstoppableSwap_${VERSION}_x64-setup.exe`,
   // https://github.com/UnstoppableSwap/core/releases/download/1.0.0-alpha.3/UnstoppableSwap_1.0.0-alpha.3_x64.dmg
   mac: `https://github.com/UnstoppableSwap/core/releases/download/${VERSION}/UnstoppableSwap_${VERSION}_x64.dmg`,
+  // https://github.com/UnstoppableSwap/core/releases/download/1.0.0-rc.10/UnstoppableSwap_1.0.0-rc.10_amd64.deb
+  linux_deb: `https://github.com/UnstoppableSwap/core/releases/download/${VERSION}/UnstoppableSwap_${VERSION}_amd64.deb`,
   // https://github.com/UnstoppableSwap/core/releases/download/1.0.0-alpha.3/UnstoppableSwap_1.0.0-alpha.3_amd64.AppImage
-  linux: `https://github.com/UnstoppableSwap/core/releases/download/${VERSION}/UnstoppableSwap_${VERSION}_amd64.AppImage`,
+  linux_appimage: `https://github.com/UnstoppableSwap/core/releases/download/${VERSION}/UnstoppableSwap_${VERSION}_amd64.AppImage`,
   // https://github.com/UnstoppableSwap/core/releases/download/1.0.0-alpha.3/UnstoppableSwap_1.0.0-alpha.3_aarch64.dmg
   mac_arm: `https://github.com/UnstoppableSwap/core/releases/download/${VERSION}/UnstoppableSwap_${VERSION}_aarch64.dmg`,
 };
@@ -85,14 +86,25 @@ export default function DownloadButton() {
       }
     } else if (platform.includes("Win")) {
       setOs("win");
+    } else if (
+      platform.includes("Debian") ||
+      // Ubuntu, Xubuntu, Kubuntu, etc
+      platform
+        .toLowerCase()
+        .includes("buntu") ||
+      platform.includes("Mint")
+    ) {
+      setOs("linux_deb");
     } else {
-      setOs("linux");
+      setOs("linux_appimage");
     }
   }, []);
 
   useEffect(() => {
     setDownloadLink(
-      DOWNLOAD_LINKS[os as "mac" | "mac_arm" | "linux" | "win"] || DOWNLOAD_LINKS.win
+      DOWNLOAD_LINKS[
+        os as "mac" | "mac_arm" | "linux_deb" | "linux_appimage" | "win"
+      ] || DOWNLOAD_LINKS.win,
     );
   }, [os]);
 
@@ -117,17 +129,19 @@ export default function DownloadButton() {
           onChange={(event) => setOs(event.target.value as string)}
         >
           {[
-            { value: "linux", icon: <LinuxIcon />, label: "AppImage" },
+            { value: "linux_deb", icon: <LinuxIcon />, label: "Deb" },
+            { value: "linux_appimage", icon: <LinuxIcon />, label: "AppImage" },
             { value: "mac", icon: <AppleIcon />, label: "Intel" },
             { value: "mac_arm", icon: <AppleIcon />, label: "Silicon" },
-            { value: "win", icon: <WindowsIcon />, label: "x64" }
-          ].map(item => (
+            { value: "win", icon: <WindowsIcon />, label: "x64" },
+          ].map((item) => (
             <MenuItem
               key={item.value}
               value={item.value}
-              style={{ display: 'flex', gap: "0.5rem", alignItems: 'center' }}
+              style={{ display: "flex", gap: "0.5rem", alignItems: "center" }}
             >
-              {item.icon}{item.label}
+              {item.icon}
+              {item.label}
             </MenuItem>
           ))}
         </Select>
