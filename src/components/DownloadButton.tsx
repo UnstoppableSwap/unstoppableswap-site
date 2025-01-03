@@ -15,21 +15,16 @@ import AppleIcon from "./icons/AppleIcon";
 import LinuxIcon from "./icons/LinuxIcon";
 import WindowsIcon from "./icons/WindowsIcon";
 
-const VERSION = "1.0.0-rc.11"; // TODO: fetch from Github API?
 export const GITHUB_URL = "https://github.com/UnstoppableSwap/core";
-const ALL_DOWNLOADS = `${GITHUB_URL}/releases/tag/v${VERSION}`;
-const DOWNLOAD_LINKS = {
-  // https://github.com/UnstoppableSwap/core/releases/download/1.0.0-alpha.3/UnstoppableSwap_1.0.0-alpha.3_x64-setup.exe
-  win: `https://github.com/UnstoppableSwap/core/releases/download/${VERSION}/UnstoppableSwap_${VERSION}_x64-setup.exe`,
-  // https://github.com/UnstoppableSwap/core/releases/download/1.0.0-alpha.3/UnstoppableSwap_1.0.0-alpha.3_x64.dmg
-  mac: `https://github.com/UnstoppableSwap/core/releases/download/${VERSION}/UnstoppableSwap_${VERSION}_x64.dmg`,
-  // https://github.com/UnstoppableSwap/core/releases/download/1.0.0-rc.10/UnstoppableSwap_1.0.0-rc.10_amd64.deb
-  linux_deb: `https://github.com/UnstoppableSwap/core/releases/download/${VERSION}/UnstoppableSwap_${VERSION}_amd64.deb`,
-  // https://github.com/UnstoppableSwap/core/releases/download/1.0.0-alpha.3/UnstoppableSwap_1.0.0-alpha.3_amd64.AppImage
-  linux_appimage: `https://github.com/UnstoppableSwap/core/releases/download/${VERSION}/UnstoppableSwap_${VERSION}_amd64.AppImage`,
-  // https://github.com/UnstoppableSwap/core/releases/download/1.0.0-alpha.3/UnstoppableSwap_1.0.0-alpha.3_aarch64.dmg
-  mac_arm: `https://github.com/UnstoppableSwap/core/releases/download/${VERSION}/UnstoppableSwap_${VERSION}_aarch64.dmg`,
-};
+const FALLBACK_VERSION = "1.0.0-rc.11";
+
+const getDownloadLinks = (version: string) => ({
+  win: `${GITHUB_URL}/releases/download/${version}/UnstoppableSwap_${version}_x64-setup.exe`,
+  mac: `${GITHUB_URL}/releases/download/${version}/UnstoppableSwap_${version}_x64.dmg`,
+  mac_arm: `${GITHUB_URL}/releases/download/${version}/UnstoppableSwap_${version}_aarch64.dmg`,
+  linux_deb: `${GITHUB_URL}/releases/download/${version}/UnstoppableSwap_${version}_amd64.deb`,
+  linux_appimage: `${GITHUB_URL}/releases/download/${version}/UnstoppableSwap_${version}_amd64.AppImage`,
+});
 
 const useStyles = makeStyles((theme) => ({
   outer: {
@@ -71,7 +66,20 @@ function ViewCodeButton() {
 export default function DownloadButton() {
   const classes = useStyles();
   const [os, setOs] = useState("win");
-  const [downloadLink, setDownloadLink] = useState(DOWNLOAD_LINKS.win);
+  const [version, setVersion] = useState(FALLBACK_VERSION);
+  const downloadLink = getDownloadLinks(version)[os as keyof typeof getDownloadLinks];
+
+  // Fetch the latest version from GitHub
+  useEffect(() => {
+    fetch("https://api.github.com/repos/UnstoppableSwap/core/releases/latest")
+      .then((res) => res.json())
+      .then((data) => {
+        setVersion(data.tag_name);
+      })
+      .catch((err) => {
+        console.error("Error fetching latest version", err);
+      });
+  }, []);
 
   useEffect(() => {
     const platform = window.navigator.platform;
@@ -99,14 +107,6 @@ export default function DownloadButton() {
       setOs("linux_appimage");
     }
   }, []);
-
-  useEffect(() => {
-    setDownloadLink(
-      DOWNLOAD_LINKS[
-        os as "mac" | "mac_arm" | "linux_deb" | "linux_appimage" | "win"
-      ] || DOWNLOAD_LINKS.win,
-    );
-  }, [os]);
 
   return (
     <Box className={classes.outer}>
@@ -147,10 +147,14 @@ export default function DownloadButton() {
         </Select>
       </Box>
       <Typography variant="caption" color="textSecondary">
-        <Link target="_blank" href={ALL_DOWNLOADS} color="textSecondary">
+        <Link
+          target="_blank"
+          href={`${GITHUB_URL}/releases/tag/${version}`}
+          color="primary"
+        >
           All downloads
         </Link>{" "}
-        | v{VERSION} | Current version
+        | v{version} | Current version
       </Typography>
     </Box>
   );
