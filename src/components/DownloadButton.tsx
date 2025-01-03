@@ -16,13 +16,14 @@ import LinuxIcon from "./icons/LinuxIcon";
 import WindowsIcon from "./icons/WindowsIcon";
 
 export const GITHUB_URL = "https://github.com/UnstoppableSwap/core";
+const FALLBACK_VERSION = "1.0.0-rc.11";
 
 const getDownloadLinks = (version: string) => ({
-  win: `https://github.com/UnstoppableSwap/core/releases/download/${version}/UnstoppableSwap_${version}_x64-setup.exe`,
-  mac: `https://github.com/UnstoppableSwap/core/releases/download/${version}/UnstoppableSwap_${version}_x64.dmg`,
-  mac_arm: `https://github.com/UnstoppableSwap/core/releases/download/${version}/UnstoppableSwap_${version}_aarch64.dmg`,
-  linux_deb: `https://github.com/UnstoppableSwap/core/releases/download/${version}/UnstoppableSwap_${version}_amd64.deb`,
-  linux_appimage: `https://github.com/UnstoppableSwap/core/releases/download/${version}/UnstoppableSwap_${version}_amd64.AppImage`,
+  win: `${GITHUB_URL}/releases/download/${version}/UnstoppableSwap_${version}_x64-setup.exe`,
+  mac: `${GITHUB_URL}/releases/download/${version}/UnstoppableSwap_${version}_x64.dmg`,
+  mac_arm: `${GITHUB_URL}/releases/download/${version}/UnstoppableSwap_${version}_aarch64.dmg`,
+  linux_deb: `${GITHUB_URL}/releases/download/${version}/UnstoppableSwap_${version}_amd64.deb`,
+  linux_appimage: `${GITHUB_URL}/releases/download/${version}/UnstoppableSwap_${version}_amd64.AppImage`,
 });
 
 const useStyles = makeStyles((theme) => ({
@@ -65,32 +66,20 @@ function ViewCodeButton() {
 export default function DownloadButton() {
   const classes = useStyles();
   const [os, setOs] = useState("win");
-  const [version, setVersion] = useState("");
-  const [downloadLink, setDownloadLink] = useState("");
-  const [downloadLinks, setDownloadLinks] = useState(getDownloadLinks(""));
+  const [version, setVersion] = useState(FALLBACK_VERSION);
+  const downloadLink = getDownloadLinks(version)[os as keyof typeof getDownloadLinks];
 
+  // Fetch the latest version from GitHub
   useEffect(() => {
     fetch("https://api.github.com/repos/UnstoppableSwap/core/releases/latest")
       .then((res) => res.json())
       .then((data) => {
-        const newVersion = data.tag_name.replace("v", "");
-        setVersion(newVersion);
-        setDownloadLinks(getDownloadLinks(newVersion));
+        setVersion(data.tag_name);
       })
       .catch((err) => {
-        console.error(err);
+        console.error("Error fetching latest version", err);
       });
   }, []);
-
-  useEffect(() => {
-    if (version) {
-      setDownloadLink(
-        downloadLinks[
-          os as "mac" | "mac_arm" | "linux_deb" | "linux_appimage" | "win"
-        ] || downloadLinks.win,
-      );
-    }
-  }, [os, version, downloadLinks]);
 
   useEffect(() => {
     const platform = window.navigator.platform;
@@ -160,7 +149,7 @@ export default function DownloadButton() {
       <Typography variant="caption" color="textSecondary">
         <Link
           target="_blank"
-          href={`${GITHUB_URL}/releases/tag/v${version}`}
+          href={`${GITHUB_URL}/releases/tag/${version}`}
           color="primary"
         >
           All downloads
