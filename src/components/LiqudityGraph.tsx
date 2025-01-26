@@ -408,6 +408,8 @@ export function LiquidityGraph() {
             data: mergedData.map((item) => new Date(item[0])),
             scaleType: "band",
             tickLabelStyle: { fill: "white" },
+            valueFormatter: (date: Date) => 
+              date.toLocaleDateString(undefined, { month: "short", day: "numeric" }),
           },
         ]}
         yAxis={[
