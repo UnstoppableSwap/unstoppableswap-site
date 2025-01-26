@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { satsToBtc } from "../utils";
 import { Divider } from "@material-ui/core";
 
-// Our API does not return this data anymore so we use legacy data
+// Legacy data as fallback
 const STATIC_STATS = [
   ["2023-11-25T00:00:00.000Z", 16416727],
   ["2023-11-26T00:00:00.000Z", 16301355],
@@ -358,50 +358,75 @@ const STATIC_STATS = [
   ["2024-11-13T00:00:00.000Z", 273000752],
   ["2024-11-14T00:00:00.000Z", 267386219],
   ["2024-11-15T00:00:00.000Z", 324471246],
-];
+] as [string, number][];
 
-interface DataPoint {
-  date: string;
-  liquidity: number;
+interface ApiDataPoint {
+  date: [number, number, number, number, number, number];
+  totalLiquidityBtc: number;
 }
 
 export function LiquidityGraph() {
-  return STATIC_STATS.length > 0 ? (
+  const [mergedData, setMergedData] = useState<[string, number][]>(STATIC_STATS);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('https://api.unstoppableswap.net/api/liquidity-daily');
+        const apiData: ApiDataPoint[] = await response.json();
+
+        const processedApiData = apiData.map(item => {
+          const date = new Date(Date.UTC(item.date[0], 0, 1));
+          date.setUTCDate(item.date[1]);
+          return [
+            date.toISOString(),
+            Math.round(item.totalLiquidityBtc * 100000000)
+          ] as [string, number];
+        });
+
+        const mergedArray = Array.from(
+          new Map([...STATIC_STATS, ...processedApiData]).entries()
+        ).sort((a, b) => new Date(a[0]).getTime() - new Date(b[0]).getTime());
+
+        setMergedData(mergedArray);
+      } catch (error) {
+        console.error('Failed to fetch liquidity data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  return mergedData.length > 0 ? (
     <>
       <Divider style={{ width: "100%" }} />
       <BarChart
+        tooltip={{
+          trigger: "none",
+        }}
         xAxis={[
           {
-            data: STATIC_STATS.map((item) =>
-              new Date(item[0]).toLocaleDateString(undefined, {
-                month: "short",
-                day: "numeric",
-              }),
-            ),
+            data: mergedData.map((item) => new Date(item[0])),
             scaleType: "band",
-            tickLabelStyle: { fill: "white" }, // X-axis text color
+            tickLabelStyle: { fill: "white" },
           },
         ]}
         yAxis={[
           {
             label: "Total liquidity (BTC)",
-            labelStyle: { fill: "white" }, // Y-axis label color
-            fill: "white",
+            labelStyle: { fill: "white" },
+            tickLabelStyle: { fill: "white" },
           },
         ]}
         series={[
           {
-            data: STATIC_STATS.map((item) => satsToBtc(Number(item[1]))),
+            data: mergedData.map((item) => satsToBtc(Number(item[1]))),
             color: "#f4511e",
           },
         ]}
         height={300}
-        tooltip={{
-          trigger: "none",
-        }}
         sx={{
           "& .MuiChartsLegend-label": {
-            fill: "white", // Legend text color
+            fill: "white",
           },
         }}
       />
