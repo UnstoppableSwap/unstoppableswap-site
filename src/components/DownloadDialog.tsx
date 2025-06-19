@@ -7,8 +7,7 @@ import {
   Button,
 } from "@material-ui/core";
 
-export const GITHUB_URL =
-  "https://github.com/UnstoppableSwap/unstoppableswap-gui";
+export const GITHUB_URL = "https://github.com/UnstoppableSwap/core";
 
 export default function DownloadDialog({
   open,
